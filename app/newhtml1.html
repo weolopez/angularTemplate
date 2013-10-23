@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<!PAGEREF 16253>
+<head><title>AT&amp;T - AT&T PAPI</title>
+<meta charset="UTF-8">
+<meta http-equiv="expires" content="Tue, 01 Jan 1985 00:00:01 GMT">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<meta name="tdata-consumptionEngine" value="ATTNET">
+<meta name="tdata-pageId" value="1">
+<meta name="tdata-pageCategory" value="pageCategory">
+<meta name="tdata-pagedescription" value="AT&T Essentials">
+<meta name="data-userid" value=''>
+<!--[if lt IE 9]>
+<script src="/js/html5/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="/design/CDLS20/css/styles.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="/design/CDLS20/css/styles-ie7.css">
+<![endif]-->
+<!--[if IE 8]>
+<link rel="stylesheet" href="/design/CDLS20/css/styles-ie8.css">
+<![endif]-->
+<script type="text/javascript" src="/js/jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery/urlParser/jquery.url.packed.js"></script>
+<script type="text/javascript" src="/js/jquery/simplemodal/jquery.simplemodal.js"></script>
+<script type="text/javascript" src="/js/jquery/organicTabs/organictabs.jquery.js"></script>
+<script type="text/javascript" src="/js/jquery/tinyCarousel/jquery.tinycarousel.1.9.js"></script>
+<script type="text/javascript" src="/design/CDLS20/js/scripts.js"></script>
+<script type="text/javascript" src="/design/cdls20/js/tdata.js"></script>
+</head>
+<body>
+<div id="siteWrap">
+<script>
+function fsubmit(){
+//alert(document.mfssfrm.memberID.value);
+document.mfssfrm.submit();
+}
+//the variable g_Name is needed to check if a user is logged in when playing the video.
+//if no user is logged in, we redirect to the login page.
+var g_Name = '';
+</script>
+
+<header id="masthead"> 
+<nav id="GlobalNav">
+<div class="globalNavWrap">
+<ul>
+<li class="selected"><a href="http://beta.att.yahoo.com/" title="att.net" data-ct="att|masthead|globalTopNav|att.net">att.net</a></li>
+<li><a href="http://www.att.com" title="att.com" data-ct="att|masthead|globalTopNav|att.com">att.com</a></li>
+<li class="last"><a href="http://uverseonline.att.net/" title="uverse.com" data-ct="att|masthead|globalTopNav|uverse.com">uverse.com</a></li>
+</ul>
+<ul class="gnMoreLinks">
+<li class="last"><a href="http://elportal.att.net" title="En Espa&ntilde;ol">En Espa&ntilde;ol</a></li>
+</ul>
+</div>
+</nav>
+<section> 
+<a class="attLogo" href="http://beta.att.yahoo.com/" data-ct="att|masthead|logo|attLogo">att.net</a> 
+<script src="/design/cdls20/js/search.js"></script>
+<div id="searchMod">
+<form target="_top" action="http://portal.stage.att.net/attportal/s/s.dll" method="GET" id="fs" name="fs" onsubmit="return OnSubmitForm();">
+<div id="searchYhoo">
+<input type="hidden" id="id" value="135" name="id" />
+<input type="hidden" id="clickthru" value="clickthru" name="type" />
+<input type="hidden" id="name" value="" name="name" />
+<input type="hidden" id="decodefirst" value="1" name="decodefirst" />
+<input type="hidden" id="redirecturl" value="/s/userinfo.dll?ep=1091" name="redirecturl" />
+<input type="hidden" id="returl" value="" name="returl" />
+</div>
+<div id="searchParams">
+<input type="hidden" id="spage" name="spage" />
+<input type="hidden" id="searchType" name="searchType" />
+<input type="hidden" id="source" name="source" />
+<input type="hidden" id="url_searchType" name="url_searchType" value=""/>
+<input type="hidden" id="url_Source" name="url_Source" value=""/>
+<input type="hidden" id="url_Channel" name="url_Channel" value=""/>
+<input type="hidden" id="url_HTTPCobrand" name="url_HTTPCobrand" value="http://portal.stage.att.net/attportal"/>
+<input type="hidden" id="url_ch" name="ch" value="search" />
+<input type="hidden" id="IPTYPE" name="IPTYPE" value="172.16.120.16" />
+<input type="hidden" id="searchcobrand" name = "searchcobrand" value = "http://partnersearch.att.net/s/s.dll" />
+</div>
+<input type="hidden" id="Hidden2" name="channel" value="at"   />
+<div class="searchNav">
+<ul>
+<li><a href="#" id="web" name="srchm" title="Web Search" onclick="searchToggle(0); return false;">Web</a></li>
+<li><a href="#" id="yp"  name="srchm" title="Local Search" onclick="searchToggle(1); return false;">Yellow Pages</a></li>
+<li><a href="#" id="ppl" name="srchm" title="People Search" onclick="searchToggle(2); return false;">People</a></li>
+<li><a href="#" id="img" name="srchm" title="Images Search" onclick="searchToggle(3); return false;">Images</a></li>
+<li><a href="#" id="vid" name="srchm" title="Video Search" onclick="searchToggle(4); return false;">Video</a></li>
+<li class="moreLink"><a href="http://tools.search.yahoo.com/about/forsearchers.html?fr=att-portal" id="more" name="more" title="More" target="_top" data-ct="att|masthead|search|more">More</a></li>
+</ul>
+</div>
+<div class="searchInput">				
+<span class="txtLong">
+<label for="fp"> Search for </label>
+<input type="text" maxlength="45" name="string" id="fp" size="55" value="" class="searchTxt" />
+</span>
+<div id="ypSrch">
+<span id="srchIn">in</span>
+<span class="txtShort">
+<label for="where"> Where </label>
+<input type="text" id="where" name="where" size="34" maxlength="45"  value="" title="Enter Location" class="searchTxt" />
+</span>
+</div>
+<input id="sm" name="sm" type="submit" value="Web" class="searchBtn" data-ct="att|masthead|search|Search Web" />
+</div>
+<div id="pbyLogo"></div>
+</form>
+</div>
+<a class="yahooLogo" href="http://beta.att.yahoo.com/" data-ct="att|masthead|logo|yLogo">yahoo.com</a>
+<nav class="mainNav">
+<ul>
+<li><a href="http://beta.att.yahoo.com/" title="Home" data-ct="att|masthead|main nav|home">Home</a></li>
+<li><a href="http://beta.att.yahoo.com/sports/" title="Sports" data-ct="att|masthead|main nav|sports">Sports</a></li>
+<li><a href="http://beta.att.yahoo.com/entertainment/" title="Entertainment" data-ct="att|masthead|main nav|entertainment">Entertainment</a></li>
+<li><a href="http://finance.yahoo.com/" title="Finance" data-ct="att|masthead|main nav|finance">Finance</a></li>
+<li><a href="http://news.yahoo.com/" title="News" data-ct="att|masthead|main nav|news">News</a></li>
+<li class="last">
+<a href="http://www.att.net/webdirectory" title="More" data-ct="att|masthead|main nav|more">More</a>
+<nav class="subNav clearfix">
+<div class="topCap"></div>
+<div class="wrap clearfix">
+<ul>
+<li><a href="http://autos.yahoo.com/" title="Autos" data-ct="att|masthead|dropNav|autos">Autos</a></li>
+<li><a href="http://att.net/careers" title="Careers" data-ct="att|masthead|dropNav|careers">Careers</a></li>
+<li><a href="http://www.att.net/auctions" title="eBay" data-ct="att|masthead|dropNav|auctions">eBay</a></li>
+<li><a href="http://att.yahoo.com/myaccount" title="Member Center" data-ct="att|masthead|dropNav|memberCenter">Member Center</a></li>
+<li><a href="http://yahoo.match.com/" title="Personals" data-ct="att|masthead|dropNav|personals">Personals</a></li>
+<li><a href="http://shopping.yahoo.com/" title="Shopping" data-ct="att|masthead|dropNav|shopping">Shopping</a></li>
+<li><a href="http://travel.yahoo.com/" title="Travel" data-ct="att|masthead|dropNav|travel">Travel</a></li>
+</ul>
+<ul class="col2">
+<li><a href="http://screen.yahoo.com/" title="Yahoo! Screen" data-ct="att|masthead|dropNav|yScreen">Yahoo! Screen</a></li>
+<li><a href="http://shine.yahoo.com/" title="Yahoo! Shine" data-ct="att|masthead|dropNav|yShine">Yahoo! Shine</a></li>
+<li><a href="http://www.att.net/products" title="AT&amp;T Offers" data-ct="att|masthead|dropNav|attOffers">AT&amp;T Offers</a></li>
+<li><a href="http://games.att.net/" title="AT&amp;T Games" data-ct="att|masthead|dropNav|attGames">AT&amp;T Games</a></li>
+<li><a href="http://www.att.net/mobile" title="AT&amp;T Mobile" data-ct="att|masthead|dropNav|attMobile">AT&amp;T Mobile</a></li>
+<li><a href="http://att.software.yahoo.com/" title="AT&amp;T Sofware Center" data-ct="att|masthead|dropNav|attSoftwareCenter">AT&amp;T Software Center</a></li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</nav>
+</li>
+</ul>
+</nav>
+<a href="http://att.yahoo.com/mail" class="mailLink" data-ct="att|masthead|main nav|mail"><span>Mail</span><br />Check email</a>
+</section>
+<div class="subChannels">
+<nav class="subChannelNav">
+<ul>
+<li class="last"><a href="http://www.att.net/products" data-ct="att|masthead|channel nav|AT&amp;T Essentials" class="active">AT&amp;T Essentials</a></li>
+</ul>
+</nav><div id="signIn">
+<ul>
+<li>Hi, <a href="#" id="url_login" data-ct="att|masthead|support nav|log in"><strong>Please sign in</strong></a></li>
+<li><a href="/attportal/s/s.dll?spage=host/getatt.htm" data-ct="att|masthead|support nav|sign up">Sign Up</a></li>
+<li id="attSup" class="last"><a href="http://www.att.com/esupport/main.jsp?App_ID=PBY" data-ct="att|masthead|support nav|support">AT&amp;T Support </a></li>
+</ul>
+</div>
+</div>
+</header>
+<script>	
+var orig_loc = window.location.href;	
+var temp_loc = 'http://portal.stage.att.net/attportal';	
+var Cond1 = temp_loc.search('http://portalmigration.att.net/');
+var Cond2 = temp_loc.search('http://admin.stage.att.net/');
+//alert(temp_loc);
+if(document.getElementById("url_login") != null)
+{				
+if(Cond1 == -1 && Cond2 == -1)
+{
+// Replace all occurences of 'ck=' in the URL as CGATE url breaks when it detects a 'ck' value in the URL
+regEx = /ck=&/g;
+//alert(orig_loc.replace(regEx, ""));
+document.getElementById("url_login").href = '/attportal/s/context.dll?type=clickthru&id=135&redirecturl=https://cgate.stage.att.net/yportal/attportal/s/userinfo.dll?ep=1062&rdtype=1&returnurl=' + orig_loc.replace(regEx, "");
+}
+else if(Cond1 == 0 || Cond2 == 0)
+document.getElementById("url_login").href = '/attportal/s/context.dll?type=clickthru&id=135&redirecturl=https://cgate.stage.att.net/yportal/attportal/s/userinfo.dll?ep=1062&rdtype=1';
+}
+if(document.getElementById("url_logout") != null)
+{
+if (Cond1 == -1 && Cond2 == -1) {
+var strReturnURL = window.location.href;
+var strSearchString = "test=success";
+var strSearchResult = strReturnURL.search(strSearchString);
+if (strSearchResult != -1) {
+strReturnURL = strReturnURL.substring(0, strSearchResult + strSearchString.length);
+}
+document.getElementById("url_logout").href = '/attportal/s/context.dll?type=clickthru&id=56789&name=pclogin&userid=1&userpw=.&uh=1,0,&clientlogout=1&redirecturl=https://cgate.stage.att.net/apiserver/igate_web_dlom/logOut.do?style=yportal&returnurl=' + strReturnURL;
+}
+else if (Cond1 == 0 || Cond2 == 0)
+document.getElementById("url_logout").href = '/attportal/s/context.dll?type=clickthru&id=56789&name=pclogin&userid=1&userpw=.&uh=1,0,&clientlogout=1&redirecturl=https://cgate.stage.att.net/apiserver/igate_web_dlom/logOut.do?style=yportal';
+}
+</script>
+
+<section id="pageBody">
+<link rel="stylesheet" href="/design/cdls20/css/at.css" />
+<link rel="stylesheet" href="/js/jquery/bxslider/jquery.bxslider.css" />
+<script type="text/javascript" src="/js/jquery/bxslider/jquery.bxslider.js"></script>
+<script type="text/javascript" src="/js/jquery/poshytip/jquery.poshytip.min.js"></script>
+<script type="text/javascript" src="/design/CDLS20/js/app.js"></script>
+<script type="text/javascript" src="/design/CDLS20/js/clickstream.js"></script>
+<section id="topSection">
+<div class="container_24 clearfix">
+<div class="grid_16">
+<h1>AT&amp;T Essentials</h1>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+$('#productSearchTxt').focus(function(){
+clearProductSearch($(this));
+}).blur(function(){
+clearProductSearch($(this));
+});
+$('#productSearchBtn').on('click',function(){
+if ($('#productSearchTxt').val() == '' || $('#productSearchTxt').val() == 'Search AT&T Products'){
+alert('Please enter at least one keyword in the Search box.');
+return false;
+} else {
+return true;
+}
+});
+});
+function clearProductSearch(obj){
+if (obj.val() == 'Search AT&T Products'){
+obj.val('');
+} else if (obj.val() == ''){
+obj.val('Search AT&T Products');
+}
+}
+</script>
+<div class="grid_8">
+<form id="productSearch" action="http://www.att.com/global-search/search.jsp" name="searchForm" method="get" target="_blank">
+<fieldset>
+<input type="hidden" value="HOME" name="App_ID">
+<input type="hidden" value="FALSE" name="autoSuggest">
+<input type="hidden" value="FALSE" id="tabPressed" name="tabPressed">
+<label for="productSearchTxt">Search AT&amp;T Products</label>
+<input type="text" title="Search" class="" id="productSearchTxt" name="q" value="Search AT&amp;T Products" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+<input type="submit" value="Submit" id="productSearchBtn">
+</fieldset>
+</form>
+</div>
+<div class="newline"></div>
+<div class="grid_24">
+<div id="jumbotron">
+<ul class="bxslider">
+<!-- 8400473 -->
+<li>
+<div class="slide tdata" data-tdata="" data-tdata-replace="sliderInsert" id="">
+<a data-tdataurl="" href="http://clk.atdmt.com/CNT/go/423527776/direct/01/" title="Best Deals" target="_blank"><img height="270" class="TDataImage" data-tdatalargeimage="" src="http://view.atdmt.com/CNT/view/423527776/direct/01/" alt="Best Deals"  data-tdataurl1=""/></a>
+<span class="thumb tdata" data-tdatalargetext=""><img  data-tdatasmallimage="" src="/editorial/images/73/8400473/best-deals.gif"/>Best Deals</span>
+</div>
+</li><!-- 8164502 -->
+<li>
+<div class="slide tdata" data-tdata="" data-tdata-replace="sliderInsert" id="">
+<a data-tdataurl="" href="http://www.att.com/shop/wireless/devices/smartphones.html?sortDeviceBy=windows&source=ECst0000010V2200E" title="Windows Phone" target="_blank"><img height="270" class="TDataImage" data-tdatalargeimage="" src="http://view.atdmt.com/CNT/view/437265663/direct/01/" alt="Windows Phone"  data-tdataurl1=""/></a>
+<span class="thumb tdata" data-tdatalargetext=""><img  data-tdatasmallimage="" src="/editorial/images/2/8164502/windows-phone.png"/>Windows Phone</span>
+</div>
+</li><!-- 8400533 -->
+<li>
+<div class="slide tdata" data-tdata="" data-tdata-replace="sliderInsert" id="">
+<a data-tdataurl="" href="http://clk.atdmt.com/CNT/go/423527777/direct/01/" title="Small Biz" target="_blank"><img height="270" class="TDataImage" data-tdatalargeimage="" src="http://view.atdmt.com/CNT/view/423527777/direct/01/" alt="Small Biz"  data-tdataurl1=""/></a>
+<span class="thumb tdata" data-tdatalargetext=""><img  data-tdatasmallimage="" src="/editorial/images/33/8400533/add-mobility.gif"/>Small Biz</span>
+</div>
+</li><!-- 8400536 -->
+<li>
+<div class="slide tdata" data-tdata="" data-tdata-replace="sliderInsert" id="">
+<a data-tdataurl="" href="http://clk.atdmt.com/CNT/go/423527778/direct/01/" title="U-verse" target="_blank"><img height="270" class="TDataImage" data-tdatalargeimage="" src="http://view.atdmt.com/CNT/view/423527778/direct/01/" alt="U-verse"  data-tdataurl1=""/></a>
+<span class="thumb tdata" data-tdatalargetext=""><img  data-tdatasmallimage="" src="/editorial/images/36/8400536/uverse.gif"/>U-verse</span>
+</div>
+</li><!-- 8164505 -->
+<li>
+<div class="slide tdata" data-tdata="" data-tdata-replace="sliderInsert" id="">
+<a data-tdataurl="" href="http://www.att.com/gen/general?pid=20369&source=ECst0000010V2100E" title="AT&T Trade-in program" target="_blank"><img height="270" class="TDataImage" data-tdatalargeimage="" src="http://view.atdmt.com/CNT/view/437199305/direct/01/" alt="AT&T Trade-in program"  data-tdataurl1=""/></a>
+<span class="thumb tdata" data-tdatalargetext=""><img  data-tdatasmallimage="" src="/editorial/images/5/8164505/recycle.png"/>AT&T Trade-in program</span>
+</div>
+</li><!-- 8164494 -->
+<li>
+<div class="slide tdata" data-tdata="" data-tdata-replace="sliderInsert" id="">
+<a data-tdataurl="" href="http://www.att.com/shop/wireless/devices/apple/iphone/5-16gb-black.html?source=ECst0000010V1900E" title="iPhone Accessories" target="_blank"><img height="270" class="TDataImage" data-tdatalargeimage="" src="http://view.atdmt.com/CNT/view/437199303/direct/01/" alt="iPhone Accessories"  data-tdataurl1=""/></a>
+<span class="thumb tdata" data-tdatalargetext=""><img  data-tdatasmallimage="" src="/editorial/images/94/8164494/iPhone5.png"/>iPhone Accessories</span>
+</div>
+</li><!-- 8164504 -->
+<li>
+<div class="slide tdata" data-tdata="" data-tdata-replace="sliderInsert" id="">
+<a data-tdataurl="" href="http://www.att.com/shop/wireless/devices/samsung/galaxy-s-iii-garnet-red.html?source=ECst0000010V2000E" title="Galaxy S� III" target="_blank"><img height="270" class="TDataImage" data-tdatalargeimage="" src="http://view.atdmt.com/CNT/view/437199304/direct/01/" alt="Galaxy S� III"  data-tdataurl1=""/></a>
+<span class="thumb tdata" data-tdatalargetext=""><img  data-tdatasmallimage="" src="/editorial/images/4/8164504/SamsungGalaxyS.png"/>Galaxy S� III</span>
+</div>
+</li>
+</ul>
+<script>
+//inserts content into slider and slider tooltip
+// Custom code to integrate with JQuery Jumbotron plugin
+function sliderInsert(oldSpace, newSpace, offer) {
+// resize IS height to avoid tooltop overlap
+	//$().invSpaceSizing( newSpace.parent().height( 270 ) );
+
+// Insert Tooltip into the Jumbotron
+	var tipString = offer.name;
+	if (tipString.length > 35) {
+		tipString = tipString.substr(0, 30) + '...';
+	}
+	var img = '<img data-tdata="' + offer.inventorySpaceId + '" src="' + offer.largeImageUrl + '" style="width:auto;" />' + tipString;
+	var thumb = '<span class="thumb">' + img + '</span>';
+
+	if (offer.statusCode === '100')
+		newSpace.append(thumb);
+	oldSpace.fadeOut(function() {
+		newSpace.addClass('adOn').hide().css('visibility', 'visible').fadeIn();
+		$(this).remove();
+
+		var arrData = $('.bxslider li').not('.bx-clone').find('.thumb');
+		var arrTip = $('.tip');
+
+		$.each(arrTip, function(iTip, elTip) {
+			var tooltip = $(this).parent(),
+					newTip = $(arrData[iTip]);
+			tooltip.poshytip('update', newTip.html());
+		});
+$('.bx-pager').css('visibility','visible');
+	});
+}
+</script> 
+</div>
+</div>
+</div>
+</section>
+<script type="text/javascript">
+var slider = $('.bxslider').bxSlider({
+pager: true,
+controls: false,
+slideSelector: '.bxslider>li',
+auto: true,
+autoHover: true,
+onSliderLoad: function() {
+loadTips();
+}	
+});
+</script><div class="container_24 clearfix">
+<section id="midSection">
+<div class="container_24 clearfix">
+<div class="grid_12 ltCol" id="didYouKnow">
+				<section class="module imgLeft">
+					<header>
+						<div class="title modTitle">
+							<h1>Did You Know...?</h1>
+						</div>
+					</header>
+					<section>
+<ul class="articleTiles">
+<!-- 8100129 -->
+<li class="tdata" data-tdata="IS5" id="IS5" >
+		<p>
+			<a data-tdata-link class="imgLink TDataUrl" href="http://forums.att.com/"  title="Stay Connected" class="imgLink" TARGET="_blank" data-tdataurl="IS5">
+			
+					<img data-tdata-image class="TDataImageS" src="/editorial/images/29/8100129/stayconnected.jpg" alt="Stay Connected" width="100" data-tdatasmallimage="IS5" />
+			
+			
+			</a>
+			<span class="TDataTextS" data-tdata-name>Join in the conversation. Gain access to valuable AT&T information. Check out the forum and discussion groups.</span>
+		</p>
+		<p><a data-tdata-link class="TDataUrl" href="http://forums.att.com/" TARGET="_blank">Learn More ></a></p>
+</li><!-- 8100173 -->
+<li class="tdata" data-tdata="IS6" id="IS6" >
+		<p>
+			<a data-tdata-link class="imgLink TDataUrl" href="http://att.net/videotour"  title="New .net Video" class="imgLink" TARGET="_blank" data-tdataurl="IS6">
+			
+					<img data-tdata-image class="TDataImageS" src="/editorial/images/73/8100173/atttour.jpg" alt="New .net Video" width="100" data-tdatasmallimage="IS6" />
+			
+			
+			</a>
+			<span class="TDataTextS" data-tdata-name>Learn more about the new att.net by taking our online video tour.</span>
+		</p>
+		<p><a data-tdata-link class="TDataUrl" href="http://att.net/videotour" TARGET="_blank">Learn More ></a></p>
+</li><!-- 8100175 -->
+<li class="tdata" data-tdata="IS7" id="IS7" >
+		<p>
+			<a data-tdata-link class="imgLink TDataUrl" href="http://uverseonline.att.net/"  title="Watch U-verse TV/Movies from your .net account" class="imgLink" TARGET="_blank" data-tdataurl="IS7">
+			
+					<img data-tdata-image class="TDataImageS" src="/editorial/images/75/8100175/tvshows.jpg" alt="Watch U-verse TV/Movies from your .net account" width="100" data-tdatasmallimage="IS7" />
+			
+			
+			</a>
+			<span class="TDataTextS" data-tdata-name>You can access over 250,000 free TV shows & movies by visiting uverse.com & using your .net account.</span>
+		</p>
+		<p><a data-tdata-link class="TDataUrl" href="http://uverseonline.att.net/" TARGET="_blank">Learn More ></a></p>
+</li>
+</ul>
+</section>
+				</section>
+			</div> 
+<script type="text/javascript">
+$(document).ready(function(){
+$("#MobileTab").organicTabs({"speed":100});
+})
+</script>
+<div class="grid_12 rtCol"> 
+<div class="module clrAll" id="MobileTab">
+<div class="modHead">
+<ul class="nav">
+<li class="first"><a href="#MobileApps" class="current">Mobile Apps</a></li>
+<li class="last"><a href="#MobileGames">Mobile Games</a></li>
+</ul>
+</div>
+<div class="modBody">
+<div id="MobileApps"> 
+<ul class="articleTiles">
+<!-- 8100370 -->
+<li>
+<p>
+<a class="imgLink" href="https://play.google.com/store/apps/details?id=com.att.android.mobile.attmessages&feature=search_result" title="AT&T Messages" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/70/8100370/attmes.jpg" alt="AT&T Messages"/>
+			
+			
+</a>
+
+<span>AT&T Messages</span>
+
+</p>
+<p><a href="https://play.google.com/store/apps/details?id=com.att.android.mobile.attmessages&feature=search_result" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100279 -->
+<li>
+<p>
+<a class="imgLink" href="https://play.google.com/store/apps/details?id=com.att.myWireless&feature=search_result" title="MyAT&T" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/79/8100279/MobileAppMyAtt.png" alt="MyAT&T"/>
+			
+			
+</a>
+
+<span>MyAT&T</span>
+
+</p>
+<p><a href="https://play.google.com/store/apps/details?id=com.att.myWireless&feature=search_result" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100294 -->
+<li>
+<p>
+<a class="imgLink" href="https://play.google.com/store/apps/details?id=com.att.android.attsmartwifi&feature=search_result" title="AT&T Smart Wi-Fi" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/94/8100294/MobileSmartwifi.png" alt="AT&T Smart Wi-Fi"/>
+			
+			
+</a>
+
+<span>AT&T Smart Wi-Fi</span>
+
+</p>
+<p><a href="https://play.google.com/store/apps/details?id=com.att.android.attsmartwifi&feature=search_result" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100359 -->
+<li>
+<p>
+<a class="imgLink" href="https://play.google.com/store/apps/details?id=com.telenav.app.android.cingular&feature=search_result" title="AT&T Navigator" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/59/8100359/Mobileattnav.png" alt="AT&T Navigator"/>
+			
+			
+</a>
+
+<span>AT&T Navigator</span>
+
+</p>
+<p><a href="https://play.google.com/store/apps/details?id=com.telenav.app.android.cingular&feature=search_result" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100344 -->
+<li>
+<p>
+<a class="imgLink" href="https://play.google.com/store/apps/details?id=com.asurion.android.mobilerecovery.att&feature=search_result" title="AT&T Mobile Locate" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/44/8100344/MobileAppMobileLocate.png" alt="AT&T Mobile Locate"/>
+			
+			
+</a>
+
+<span>AT&T Mobile Locate</span>
+
+</p>
+<p><a href="https://play.google.com/store/apps/details?id=com.asurion.android.mobilerecovery.att&feature=search_result" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100345 -->
+<li>
+<p>
+<a class="imgLink" href="https://play.google.com/store/apps/details?id=com.att.android.digitallocker&feature=search_result" title="AT&T Locker" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/45/8100345/attlocker.jpg" alt="AT&T Locker"/>
+			
+			
+</a>
+
+<span>AT&T Locker</span>
+
+</p>
+<p><a href="https://play.google.com/store/apps/details?id=com.att.android.digitallocker&feature=search_result" TARGET="_blank">Get it Now ></a></p>
+</li>
+</ul>
+<div class="clrAll"></div>
+</div>
+<div class="hide" id="MobileGames">  
+<ul class="articleTiles">
+<!-- 8100467 -->
+<li>
+<p>
+<a href="https://appcenter.wireless.att.com/games/sports-racing/gallery/7879?tid=00000000012404TMR4GNJ05LN" title="Sports & Racing" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/67/8100467/sports.gif" alt="Sports & Racing"/>
+			
+			
+</a>
+Sports & Racing
+
+</p>
+		<p><a href="https://appcenter.wireless.att.com/games/sports-racing/gallery/7879?tid=00000000012404TMR4GNJ05LN" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100403 -->
+<li>
+<p>
+<a href="https://appcenter.wireless.att.com/games/at-t-arcade/gallery/7888?tid=00000000013P04TMR4FYMAVMT" title="AT&T Arcade" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/3/8100403/arcade.gif" alt="AT&T Arcade"/>
+			
+			
+</a>
+AT&T Arcade
+
+</p>
+		<p><a href="https://appcenter.wireless.att.com/games/at-t-arcade/gallery/7888?tid=00000000013P04TMR4FYMAVMT" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100397 -->
+<li>
+<p>
+<a href="https://appcenter.wireless.att.com/games/puzzle/gallery/7878?tid=00000000015T04TMR4ERRF2PJ" title="Puzzle" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/97/8100397/puzzle.gif" alt="Puzzle"/>
+			
+			
+</a>
+Puzzle
+
+</p>
+		<p><a href="https://appcenter.wireless.att.com/games/puzzle/gallery/7878?tid=00000000015T04TMR4ERRF2PJ" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100394 -->
+<li>
+<p>
+<a href="https://appcenter.wireless.att.com/games/board-games/gallery/7887?tid=00000000017S04TMR483RHTZ7" title="Board Games" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/94/8100394/board.gif" alt="Board Games"/>
+			
+			
+</a>
+Board Games
+
+</p>
+		<p><a href="https://appcenter.wireless.att.com/games/board-games/gallery/7887?tid=00000000017S04TMR483RHTZ7" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100386 -->
+<li>
+<p>
+<a href="https://appcenter.wireless.att.com/games/card-casino/gallery/7884?tid=0000000001BI04TMR4F24Q7D9" title="Card & Casino" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/86/8100386/solitaire.gif" alt="Card & Casino"/>
+			
+			
+</a>
+Card & Casino
+
+</p>
+		<p><a href="https://appcenter.wireless.att.com/games/card-casino/gallery/7884?tid=0000000001BI04TMR4F24Q7D9" TARGET="_blank">Get it Now ></a></p>
+</li><!-- 8100384 -->
+<li>
+<p>
+<a href="https://appcenter.wireless.att.com/games/action-adventure/gallery/7881?tid=0000000003NA04TMR483RHTZ7" title="Action & Adventure" class="imgLink" TARGET="_blank">
+			
+<img src="/editorial/images/84/8100384/action.gif" alt="Action & Adventure"/>
+			
+			
+</a>
+Action & Adventure
+
+</p>
+		<p><a href="https://appcenter.wireless.att.com/games/action-adventure/gallery/7881?tid=0000000003NA04TMR483RHTZ7" TARGET="_blank">Get it Now ></a></p>
+</li>
+</ul>
+<div class="clrAll"></div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="btmSection">
+<div class="container_24 clearfix">
+<div id="promos" class="clearfix">
+<!-- 8093474 -->
+<div class="grid_12 tdata" id="IS8" data-tdata="IS8" data-tdata-replace="tdataAnimate" style="height:225px;" >
+<a class="TDataUrl" href="http://www.att.com/standalone/get10/?source=EAPb2567200000ATO" title="Get a $10 Reward Card" TARGET="_blank">
+	<img data-tdatalargeimage="IS8" class="btmImage" src="/editorial/images/74/8093474/get10.gif" alt="Get a $10 Reward Card" width="460" height="225">
+</a>
+</div><!-- 8092803 -->
+<div class="grid_12 tdata" id="IS9" data-tdata="IS9" data-tdata-replace="tdataAnimate" style="height:225px;" >
+<a class="TDataUrl" href="http://www.att.com/shop/apps/myATT.html?source=EAPU2567200000ATO" title="Pay your bill" TARGET="_blank">
+	<img data-tdatalargeimage="IS9" class="btmImage" src="/editorial/images/3/8092803/payyourbill6.png" alt="Pay your bill" width="460" height="225">
+</a>
+</div>
+</div>
+<div id="promosByCat" class="clearfix">
+<div class="grid_24">
+<h1>AT&amp;T Special Offers by Category</h1>
+</div>
+<div class="grid_5">
+<a href="http://www.att.com/shop/wireless.html" title="Wireless" target="_blank"><img src="/design/CDLS20/images/at/wireless.jpg" alt="Wireless" />Wireless</a> 
+</div>
+<div class="grid_5">
+<a href="http://www.att.com/shop/u-verse.html" title="U-verse" target="_blank"><img src="/design/CDLS20/images/at/uverse.jpg" alt="Uverse" />U-verse</a> 
+</div>
+<div class="grid_5">
+<a href="http://www.att.com/shop/internet.html" title="Internet" target="_blank"><img src="/design/CDLS20/images/at/Internet.jpg" alt="Internet" />Internet</a> 
+</div>
+<div class="grid_5">
+<a href="http://www.att.com/shop/home-phone.html" title="Home Phone" target="_blank"><img src="/design/CDLS20/images/at/Homephone.jpg" alt="HomePhone" />Home Phone</a> 
+</div>
+<div class="grid_5">
+<a href="http://att.software.yahoo.com/" title="Software" target="_blank"><img src="/design/CDLS20/images/at/Sw.jpg" alt="Software" />Software</a> 
+</div>
+</div></div>
+</section>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+try {
+//alert("");
+$().getRecommendations({
+consumptionEngine: 'ATTNET',
+pageID: '1',
+userID: '',
+onErrorFunction : function(data){
+//if (data.offers.length==0)
+$('.tdata').css('visibility','visible');
+$('.bx-pager').css('visibility','visible');
+}
+},
+function(){
+//slider.startAuto();
+$('.tdata').css('visibility','visible');
+$('.bx-pager').css('visibility','visible');
+}
+);
+} catch(err){
+//alert("Catch");
+};
+});
+</script>
+<div class="clrAll"></div> 
+</section><script>
+function fsubmit(){
+//alert(document.mfssfrm.memberID.value);
+document.mfssfrm1.submit();
+}
+</script>
+<footer id="footer">
+<form method="POST" action="http://www.att.com/esupport/main.jsp?App_ID=PBY" target="_top" name="mfssfrm1">
+<input type="hidden" name="memberID" id="memberID" value="" />
+<div id="attLogoFoot">ATT Logo</div>
+<div id="footerUrls">
+<ul class="attOnWeb">
+<li class="first">AT&amp;T on the Web</li>
+<li id="attComFoot"><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.attcom&redirecturl=http://www.att.com/" target="_top" class="imgLeft"><img src="/design/CDLS20/img/icons/attCom.png" alt="att.com" />att.com</a><br /> Shop. Service. Support.</li>
+<li id="attNetFoot" class="last"><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.attnet&redirecturl=http://www.att.net/" target="_top" class="imgLeft"><img src="/design/CDLS20/img/icons/attNet.png" alt="att.net" />att.net</a><br />E-mail, News, Weather &amp; More</li>
+</ul>
+<ul class="footerLinks">
+<li class="first"><a href="javascript:fsubmit()">AT&amp;T Support</a></li>
+<li><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.adinfo&redirecturl=http://www.att.net/legal/advertising" target="_top">Advertise with Us</a></li>
+<li><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.TOS&redirecturl=http://www.att.com/shop/internet/att-internet-terms-of-service.jsp" target="_blank">Terms of Service</a></li>
+<li><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.copyright&redirecturl=http://info.yahoo.com/copyright/details.html" target="_top">Copyright</a></li>
+<li><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.privacy&redirecturl=http://att.yahoo.com/privacy" target="_top">Privacy (Updated)</a></li>
+<li><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.aboutourads&redirecturl=http://info.yahoo.com/privacy/us/yahoo/attandyahoo/adchoices.html" target="_top">About Our Ads</a></li>
+<li><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.AUP&redirecturl=http://www.corp.att.com/aup/" target="_top">Acceptable Use Policy</a></li>
+<li class="last"><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.AUP&redirecturl=http://att.yahoo.com/feedback1?.done=http://att.my.yahoo.com&.from=fpbeta" target="_top">Feedback</a></li>	
+</ul>
+<div class="copyright"><span id="USOlympic"><a id="USOurl" href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.USOCLogo&redirecturl=http://fanzone.att.net/teamusa" target="_top">US Olympics</a><a id="YPurl" href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.YPLogo&redirecturl=http://www.yellowpages.com" target="_top">Yellow Pages</a></span><p><a href="/attportal/s/context.dll?id=1400&type=clickthru&name=global.footer.att.IP&redirecturl=http://www.att.com/gen/privacy-policy?pid=2587" target="_top">Copyright &copy; 2013 AT&amp;T Intellectual Property</a>. All rights reserved.<br />AT&amp;T and the AT&amp;T logo are trademarks of AT&amp;T Intellectual Property.</p>
+</div>
+</div>
+</form>
+</footer>
+<div id="adminLinks" class="adminChannelWrapper floatfix">
+<span class="srvInfo">
+stfew3 CNC4
+</span>
+<br />
+</div>
+<div id="bkTracker" style="visibility:hidden;">
+</div>
+</div>
+</body>
+</html>
