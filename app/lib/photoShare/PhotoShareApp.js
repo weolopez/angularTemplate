@@ -50,6 +50,16 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
                     "icon": "icon-comment"
                 }
             ];
+             $scope.commentActions = [
+                {
+                    "name": "Add",
+                    "icon": "icon-camera"
+                },
+                {
+                    "name": "Comment ",
+                    "icon": "icon-comment"
+                }
+            ];
             $scope.comments = [
                 {
                     id: "1",

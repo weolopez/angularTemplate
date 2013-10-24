@@ -33,21 +33,31 @@ a {cursor: pointer;color: #C0C0C0;}
     right: 10%;
     background: rgba(55,55,55,0.8);
     color: white;
+    height: 20px;
     width: 60%;
     height: 100%;
     overflow: scroll;
 }
-#comment-list {
-    overflow: hidden;
-    
-}
-#comment-edit {
+#comment-panel ul { overflow: hidden; }
+#comment-panel textarea {
     background-color: rgba(55,55,55,0.8);
     
     color: white;
     width: 100%;
     height: 100%;
     border: none;
+}
+#comment-panel nav ul{
+    list-style: none;
+    
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 20px;
+    width: 100%;
+}
+#comment-panel nav ul li{
+    width: 50px;
+    float: left;
 }
 @media (orientation:portrait){
 	#splash-screen { line-height:1.5; padding-top:20%}
