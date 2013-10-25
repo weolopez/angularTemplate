@@ -1,18 +1,20 @@
-angular.module('crowdsApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolabResourceHttp', 'ngStorage', 'firebase'])
+angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolabResourceHttp', 'ngStorage', 'firebase'])
         .config(['$routeProvider', function($routeProvider) {
-                $routeProvider.when('/crowds/:id', {templateUrl: 'Crowds.html', controller: 'CrowdsCtrl', resolve: {
-                        allCrowds: function(Crowds, $route) {
-                            return Crowds.getCollection($route.current.params.id).all();
+                $routeProvider.when('/map/:id', {templateUrl: 'Map.html', controller: 'MapCtrl', resolve: {
+                        AppConfig: function(App, $route) {
+                            if ($route.current.params.id === undefined) return {};
+                            else return App.getCollection($route.current.params.id).all();
                         },
                         app: function($route) {
                             return $route.current.params.id;
                         }
                     }});
-                $routeProvider.otherwise({redirectTo: '/crowds/Crowds'});
+                $routeProvider.otherwise({redirectTo: '/map/Crowds'});
             }])
         .constant('MONGOLAB_CONFIG', {API_KEY: '50f36e05e4b0b9deb24829a0', DB_NAME: 'weolopez'})
         .value('fbURL', 'https://crowds.firebaseio.com/')
-        .factory('Crowds', function($mongolabResourceHttp) {
+        .value('AppConfig', {})
+        .factory('App', function($mongolabResourceHttp) {
             return {
                 getCollection: function(collection) {
                     console.log(collection);
@@ -51,11 +53,59 @@ angular.module('crowdsApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongo
                 }
             };
         })
-        .controller('CrowdsCtrl', function($scope, $http, $location, $rootScope, $localStorage, $sessionStorage, allCrowds, angularFire, fbURL, app) {
-            $scope.app = app;
-            $scope.allCrowds = allCrowds[0];
-            $scope.types = $scope.allCrowds.types;
+        .controller('MapCtrl', function($scope, $http, $location, $rootScope, $localStorage, $sessionStorage, App, angularFire, fbURL, AppConfig) {
+            var url = $location.url();
+            $scope.app = url.substring(url.lastIndexOf('/'),url.length);
+            if (jQuery.isEmptyObject(AppConfig))
+                $scope.AppConfig = App.getCollection($scope.app).all();
+            else 
+                $scope.AppConfig = AppConfig;
             $scope.$storage = $localStorage;
+            var base = {
+                center: {
+                    zoom: 11
+                },
+                defaults: {
+                    maxZoom: 25,
+                    minZoom: 11,
+                    controlLayersPosition: "topleft",
+                    attributionControl: false,
+                    tileLayer: "",
+                    tileLayerOptions: {},
+                    zoomControl: false
+                },
+                layers: {
+                    baselayers: {
+                        googleStreet: {
+                            name: "Google Street",
+                            layerType: "ROADMAP",
+                            type: "google",
+                            layerParams: {},
+                            layerOptions: {}
+                        },
+                        googleTerrain: {
+                            name: "Google Terrain",
+                            layerType: "SATELLITE",
+                            ltype: "google",
+                            layerParams: {},
+                            layerOptions: {}
+                        }
+                    }
+                }
+            };
+
+            angular.extend($scope, base);
+            $scope.$watch('AppConfig', function(appConfig) {
+                if (appConfig === undefined)
+                    return;
+                $scope.appConfig = appConfig[0];
+                $scope.types = $scope.appConfig.types;
+                angular.extend($scope.center, {
+                    lat: $localStorage.position.coords.latitude,
+                    lng: $localStorage.position.coords.longitude,
+                    zoom: $scope.appConfig.base.center.zoom
+                });
+            });
 
             var firePromis = angularFire(fbURL, $scope, 'crowds');
 
@@ -65,17 +115,10 @@ angular.module('crowdsApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongo
                 }, true);
             });
 
-            angular.extend($scope, $scope.allCrowds.base);
-            angular.extend($scope.center, {
-                lat: $localStorage.position.coords.latitude,
-                lng: $localStorage.position.coords.longitude,
-                zoom: $scope.allCrowds.base.center.zoom
-            });
-
             function updateMarkers() {
                 if ($scope.selectedIndex === undefined)
                     return;
-                var currentType = $scope.allCrowds.types[$scope.selectedIndex].name;
+                var currentType = $scope.appConfig.types[$scope.selectedIndex].name;
                 for (var i = 0; i < $scope.crowds.length; i++) {
                     var marker = $scope.crowds[i];
                     if ((marker !== undefined) && (marker.marker !== undefined)) {
@@ -102,7 +145,7 @@ angular.module('crowdsApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongo
 
                 if (index === $scope.CAMERA)
                     $rootScope.$broadcast('handleBroadcast');
-                if ($scope.allCrowds.types[index].type === 'marker') {
+                if ($scope.appConfig.types[index].type === 'marker') {
                     updateMarkers();
                 }
             };
@@ -146,7 +189,7 @@ angular.module('crowdsApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongo
                     $scope.pinClicked = true;
                 else {
                     $localStorage.currentCrowd = args.leafletEvent.target.options.title;
-                    $location.path('/crowds/EditCrowd');
+                    $location.path('/map/EditCrowd');
                 }
             });
             $scope.$on('leafletDirectiveMarker.dragend', function(e, args) {
