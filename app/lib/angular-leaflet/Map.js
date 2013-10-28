@@ -1,23 +1,25 @@
-angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolabResourceHttp', 'ngStorage', 'firebase'])
+angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolabResourceHttp', 'ngStorage', 'firebase', 'iLoveCrowdsApp'])
         .config(['$routeProvider', function($routeProvider) {
-                $routeProvider.when('/map/:id', {templateUrl: 'Map.html', controller: 'MapCtrl', resolve: {
-                        AppConfig: function(App, $route) {
-                            if ($route.current.params.id === undefined) return {};
-                            else return App.getCollection($route.current.params.id).all();
+                $routeProvider.otherwise({redirectTo: '/map/Crowds/Crowds'});
+                $routeProvider.when('/map/:crowdId/:appId', {templateUrl: 'Map.html', controller: 'MapCtrl', resolve: {
+                        appName: function($route) {
+                            return $route.current.params.appId;
                         },
-                        app: function($route) {
-                            return $route.current.params.id;
+                        crowdName: function($route) {
+                            return $route.current.params.crowdId;
+                        },
+                        AppConfig: function(App, $route) {
+                            return App.getCollection($route.current.params.appId).all();
                         }
                     }});
-                $routeProvider.otherwise({redirectTo: '/map/Crowds'});
+                $routeProvider.when('/home', {templateUrl: 'splash.html', controller: 'SplashCtrl'});
             }])
         .constant('MONGOLAB_CONFIG', {API_KEY: '50f36e05e4b0b9deb24829a0', DB_NAME: 'weolopez'})
         .value('fbURL', 'https://crowds.firebaseio.com/')
-        .value('AppConfig', {})
         .factory('App', function($mongolabResourceHttp) {
             return {
                 getCollection: function(collection) {
-                    console.log(collection);
+//                    console.log(collection);
                     return $mongolabResourceHttp(collection);
                 }
             };
@@ -53,153 +55,153 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
                 }
             };
         })
-        .controller('MapCtrl', function($scope, $http, $location, $rootScope, $localStorage, $sessionStorage, App, angularFire, fbURL, AppConfig) {
-            var url = $location.url();
-            $scope.app = url.substring(url.lastIndexOf('/'),url.length);
-            if (jQuery.isEmptyObject(AppConfig))
-                $scope.AppConfig = App.getCollection($scope.app).all();
-            else 
-                $scope.AppConfig = AppConfig;
+        .controller('MapCtrl', function($scope, $http, $location, $rootScope, $localStorage, $sessionStorage, appName, crowdName, angularFire, fbURL, AppConfig) {
+            if (appName === 'Crowd') appName = 'Crowds';
+            var fb = fbURL + crowdName + '/' + appName;
+            $scope.AppConfig = AppConfig[0]; //TODO handle Mongo Down
             $scope.$storage = $localStorage;
-            var base = {
-                center: {
-                    zoom: 11
-                },
-                defaults: {
-                    maxZoom: 25,
-                    minZoom: 11,
-                    controlLayersPosition: "topleft",
-                    attributionControl: false,
-                    tileLayer: "",
-                    tileLayerOptions: {},
-                    zoomControl: false
-                },
-                layers: {
-                    baselayers: {
-                        googleStreet: {
-                            name: "Google Street",
-                            layerType: "ROADMAP",
-                            type: "google",
-                            layerParams: {},
-                            layerOptions: {}
-                        },
-                        googleTerrain: {
-                            name: "Google Terrain",
-                            layerType: "SATELLITE",
-                            ltype: "google",
-                            layerParams: {},
-                            layerOptions: {}
-                        }
-                    }
-                }
-            };
-
-            angular.extend($scope, base);
-            $scope.$watch('AppConfig', function(appConfig) {
-                if (appConfig === undefined)
-                    return;
-                $scope.appConfig = appConfig[0];
-                $scope.types = $scope.appConfig.types;
-                angular.extend($scope.center, {
-                    lat: $localStorage.position.coords.latitude,
-                    lng: $localStorage.position.coords.longitude,
-                    zoom: $scope.appConfig.base.center.zoom
-                });
+            $scope.currentType = $localStorage.currentType;
+            for (var i = 0; i < $scope.AppConfig.types.length; i++)
+                if ($scope.AppConfig.types[i].name === $scope.currentType.name)
+                    $scope.selectedIndex = i;
+            $scope.markers = {};
+            angular.extend($scope, $scope.AppConfig.base);
+            angular.extend($scope.center, $scope.AppConfig.base.center);
+            angular.extend($scope.center, {
+                lat: $localStorage.position.coords.latitude,
+                lng: $localStorage.position.coords.longitude
             });
-
-            var firePromis = angularFire(fbURL, $scope, 'crowds');
-
-            firePromis.then(function(crowds) {
-                $scope.$watch('crowds', function(updatedCrowds) {
-                    updateMarkers();
+            $scope.types = $scope.AppConfig.types;
+            var firePromis = angularFire(fb, $scope, 'pins');
+            firePromis.then(function(pins) {
+                $scope.$watch('pins', function(updatedPins) {
+                    if (($scope.currentType === undefined) ||
+                            ($scope.pins !== updatedPins) ||
+                            (updatedPins === undefined)
+                            )
+                        return;
+                    console.log($scope.pins.length + "&" + updatedPins.length);
+                    var serverPins = getMarkersFromServer(updatedPins);
+                    mergePins(serverPins);
+//TODO remove PIN from current Markers                    
                 }, true);
             });
-
-            function updateMarkers() {
-                if ($scope.selectedIndex === undefined)
-                    return;
-                var currentType = $scope.appConfig.types[$scope.selectedIndex].name;
-                for (var i = 0; i < $scope.crowds.length; i++) {
-                    var marker = $scope.crowds[i];
-                    if ((marker !== undefined) && (marker.marker !== undefined)) {
-                        marker = marker.marker;
-                        if (marker.type === currentType) {
-                            marker.value[Object.keys(marker.value)[0]].icon = L.AwesomeMarkers.icon({
-                                icon: $scope.types[$scope.selectedIndex].icon,
-                                color: 'red'
-                            });
-                            angular.extend($scope.markers, marker.value);
-                        }
-                    }
+            function mergePins(serverPins) {
+                for (var i = 0; i < serverPins.length; i++) {
+                    var pin = serverPins[i];
+                    addPin(pin);
                 }
-
-                angular.forEach($scope.markers, function(marker, key) {
-                    if (marker.title !== currentType) {
-                        delete $scope.markers[key];
-                    }
-                });
+            }
+            /*
+             angular.forEach($scope.markers, function(marker, key) {
+             if (marker.title !== currentType) {
+             delete $scope.markers[key];
+             }
+             });
+             */
+            function getMarkersFromServer(updatedPins) {
+                var localPins = [];
+                for (var i = 0; i < updatedPins.length; i++) {
+                    var pin = updatedPins[i];
+                    if ($scope.currentType.name === pin.type)
+                        localPins.push(pin);
+                }
+                return localPins;
             }
 
-            $scope.selectedType = function(index) {
-                $scope.selectedIndex = index;
-
-                if (index === $scope.CAMERA)
-                    $rootScope.$broadcast('handleBroadcast');
-                if ($scope.appConfig.types[index].type === 'marker') {
-                    updateMarkers();
-                }
-            };
-
-            $scope.$on('leafletDirectiveMap.click', function(e, args) {
-                if ($scope.types[$scope.selectedIndex] === undefined)
-                    alert("Please select a line type.");
-
-                var count = Object.keys($scope.markers).length;
-                var name = $scope.types[$scope.selectedIndex].name + count.toString();
+            function addPin(pin) {
                 var marker = {};
                 var redMarker = L.AwesomeMarkers.icon({
-                    icon: $scope.types[$scope.selectedIndex].icon,
+                    icon: pin.icon,
                     color: 'red'
                 });
-                marker[name] = {
-                    lat: args.leafletEvent.latlng.lat,
-                    lng: args.leafletEvent.latlng.lng,
-                    title: $scope.types[$scope.selectedIndex].name,
+                marker[pin.name] = {
+                    lat: pin.lat,
+                    lng: pin.lng,
+                    title: pin.type,
                     focus: false,
                     draggable: true
                 };
-                $scope.crowds.push({marker: {
-                        type: $scope.types[$scope.selectedIndex].name,
-                        value: marker
-                    }});
-                marker[name].icon = redMarker;
+                marker[pin.name].icon = redMarker;
                 angular.extend($scope.markers, marker);
+            }
 
-                //     console.log($scope.lines);
-                //    $scope.allLines.$saveOrUpdate(changeSuccess, changeSuccess, changeError, changeError);
+
+            $scope.selectedType = function(index) {
+                if (index === $scope.selectedIndex) {
+//TODO reduce to 1                    
+                    $scope.selectedIndex = undefined;
+                    $scope.currentType = undefined;
+                    $localStorage.currentType = undefined;
+                    $scope.markers = {};
+                    return;
+                }
+                $scope.selectedIndex = index;
+                $scope.currentType = angular.copy($scope.AppConfig.types[index]);
+                $localStorage.currentType = $scope.currentType;
+                if (index === $scope.CAMERA) // TODO make mongo defined
+                    $rootScope.$broadcast('handleBroadcast');
+                if ($scope.currentType.type === 'marker') {
+                    if ($scope.pins === undefined)
+                        return;
+                    $scope.markers = {};
+                    for (var i = 0; i < $scope.pins.length; i++) {
+                        var pin = $scope.pins[i];
+                        if (pin.type === $scope.currentType.name)
+                            addPin(pin);
+                    }
+                }
+                if ($scope.currentType.type === 'nav') {
+                    $location.path('/' + $scope.currentType.path);
+                }
+                if ($scope.currentType.type === 'edit') {
+                    $location.path('/' + $scope.currentType.path);
+                }
+            };
+            $scope.$on('leafletDirectiveMap.click', function(e, args) {
+                console.log("MAP:click");
+                if ($scope.currentType === undefined) {
+                    alert("Please select a line type.");
+                    return;
+                }
+
+                var name = crowdName + appName + $scope.pins.length;
+                var pin = {
+                    name: name,
+                    crowd: crowdName,
+                    app: appName,
+                    type: $scope.currentType.name,
+                    icon: $scope.currentType.icon,
+                    lat: args.leafletEvent.latlng.lat,
+                    lng: args.leafletEvent.latlng.lng
+                };
+                addPin(pin);
+                $scope.pins.push(pin);
             });
-
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-                console.log(args);
+                for (var i = 0; i < $scope.pins.length; i++) {
+                    if ($scope.pins[i].name === args.markerName) {
+                        $localStorage.currentPin = $scope.pins[i];
+                        var path = '/' + $scope.currentType.appType + '/' + crowdName + '/' + $scope.currentType.path;
 
+                        $localStorage.position.coords.latitude = args.leafletEvent.latlng.lat;
+                        $localStorage.position.coords.longitude = args.leafletEvent.latlng.lng;
+                        console.log($localStorage.position.coords.latitude+"Marker:click:" + path);
 
-                $localStorage.currentCrowd = args.leafletEvent.target.options.title;
-
-                if ($scope.app === 'EditCrowd')
-                    $scope.pinClicked = true;
-                else {
-                    $localStorage.currentCrowd = args.leafletEvent.target.options.title;
-                    $location.path('/map/EditCrowd');
+                        $location.path(path);
+                    }
                 }
             });
             $scope.$on('leafletDirectiveMarker.dragend', function(e, args) {
+                console.log("Marker:dragend" + args.leafletEvent.target.getLatLng().lat);
                 console.log(args);
-                $scope.crowds.push({marker: {
-                        type: $scope.types[$scope.selectedIndex].name,
-                        value: args.target
-                    }});
+                for (var i = 0; i < $scope.pins.length; i++) {
+                    if ($scope.pins[i].name === args.markerName) {
+                        $scope.pins[i].lat = args.leafletEvent.target.getLatLng().lat;
+                        $scope.pins[i].lng = args.leafletEvent.target.getLatLng().lng;
+                    }
+                }
             });
-
             function changeSuccess() {
                 console.log("SUCCESS");
             }
