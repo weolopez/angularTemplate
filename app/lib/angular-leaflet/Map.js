@@ -61,9 +61,10 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
             $scope.AppConfig = AppConfig[0]; //TODO handle Mongo Down
             $scope.$storage = $localStorage;
             $scope.currentType = $localStorage.currentType;
-            for (var i = 0; i < $scope.AppConfig.types.length; i++)
-                if ($scope.AppConfig.types[i].name === $scope.currentType.name)
-                    $scope.selectedIndex = i;
+            if ($scope.currentType !== undefined)
+                for (var i = 0; i < $scope.AppConfig.types.length; i++)
+                    if ($scope.AppConfig.types[i].name === $scope.currentType.name)
+                        $scope.selectedIndex = i;
             $scope.markers = {};
             angular.extend($scope, $scope.AppConfig.base);
             angular.extend($scope.center, $scope.AppConfig.base.center);
