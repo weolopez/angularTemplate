@@ -9,12 +9,15 @@
     <div id="comment-panel" ng-show="pinClicked">
         <label id="crowd-name" for="name-input">Crowd Name: </label>
         <input id="name-input" ng-model="crowd.name" type="text" size="20" />
-
-        <label id="crowd-album" for="album-input">Album Name: </label>
-        <input id="album-input" ng-model="crowd.album" type="text" size="20" />
-
-        <label id="crowd-pins" for="pins-input">Pins: </label>
-        <input id="pins-input" ng-model="crowd.pins" type="text" size="20" />
+        <br>
+        <label id="crowd-album" for="album-input">Start Date: </label>
+        <input id="album-input" ng-model="crowd.start" type="text" size="20" />
+        <br>
+        <label id="crowd-pins" for="pins-input">End Date: </label>
+        <input id="pins-input" ng-model="crowd.end" type="text" size="20" />
+        <button ng-click="click()" style="background: none;color:white;border: none;"><i class="icon-camera"></i> Crowd</button>
+        <button ng-click="saveCrowd()" style="background: none;color:white;border: none;"><i class="icon-save"></i> Save</button>
+        <button ng-click="deleteCrowd()" style="background: none;color:white;border: none;"><i class="icon-remove"></i> Delete</button>
     </div>    
     
     <div data-file-button></div>     

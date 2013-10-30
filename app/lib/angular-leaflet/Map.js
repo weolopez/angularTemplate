@@ -1,6 +1,6 @@
 angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolabResourceHttp', 'ngStorage', 'firebase', 'iLoveCrowdsApp'])
         .config(['$routeProvider', function($routeProvider) {
-                $routeProvider.otherwise({redirectTo: '/map/Crowds/Crowds'});
+                $routeProvider.otherwise({redirectTo: '/home'});
                 $routeProvider.when('/map/:crowdId/:appId', {templateUrl: 'Map.html', controller: 'MapCtrl', resolve: {
                         appName: function($route) {
                             return $route.current.params.appId;
@@ -34,7 +34,7 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
                         $element.find('input').click();
                     });
                 },
-                link: function(scope, element, attributes, $rootScope) {
+                link: function(scope, element, attributes, $rootScope, $localStorage) {
                     scope.album = '';
                     var albumDelete = "2OOgsRAJRG2fK7T";
 
@@ -56,15 +56,18 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
             };
         })
         .controller('MapCtrl', function($scope, $http, $location, $rootScope, $localStorage, $sessionStorage, appName, crowdName, angularFire, fbURL, AppConfig) {
-            if (appName === 'Crowd') appName = 'Crowds';
+            if (appName === 'Crowd')
+                appName = 'Crowds';
             var fb = fbURL + crowdName + '/' + appName;
             $scope.AppConfig = AppConfig[0]; //TODO handle Mongo Down
-            $scope.$storage = $localStorage;
+            $scope.$sessionStorage = $localStorage;
             $scope.currentType = $localStorage.currentType;
             if ($scope.currentType !== undefined)
                 for (var i = 0; i < $scope.AppConfig.types.length; i++)
-                    if ($scope.AppConfig.types[i].name === $scope.currentType.name)
+                    if ($scope.AppConfig.types[i].name === $scope.currentType.name) {
                         $scope.selectedIndex = i;
+                        $scope.currentType = $scope.AppConfig.types[i];
+                    }
             $scope.markers = {};
             angular.extend($scope, $scope.AppConfig.base);
             angular.extend($scope.center, $scope.AppConfig.base.center);
@@ -179,17 +182,24 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
                 addPin(pin);
                 $scope.pins.push(pin);
             });
+            var currentPinIndex = undefined;
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 for (var i = 0; i < $scope.pins.length; i++) {
                     if ($scope.pins[i].name === args.markerName) {
                         $localStorage.currentPin = $scope.pins[i];
+                        currentPinIndex = i;
                         var path = '/' + $scope.currentType.appType + '/' + crowdName + '/' + $scope.currentType.path;
 
                         $localStorage.position.coords.latitude = args.leafletEvent.latlng.lat;
                         $localStorage.position.coords.longitude = args.leafletEvent.latlng.lng;
-                        console.log($localStorage.position.coords.latitude+"Marker:click:" + path);
+                        console.log($scope.currentType.appType + "Marker:click:" + path);
 
-                        $location.path(path);
+                        if ($scope.currentType.appType === '') {
+                            $scope.crowd = $scope.pins[i].crowd;
+                            $scope.pinClicked = true;
+                        }
+                        else
+                            $location.path(path);
                     }
                 }
             });
@@ -211,6 +221,45 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
                 console.log("changeError");
             }
             ;
+            $scope.saveCrowd = function() {
+                createAlbum($scope.crowd.name + $scope.pins[currentPinIndex].name);
+
+                $scope.pins[currentPinIndex].crowd = $scope.crowd;
+                $scope.pinClicked = false;
+                $localStorage.currentCrowd = $scope.crowd.name;
+                $location.path('/');
+            };
+            $scope.click = function() {                
+                createAlbum($scope.crowd.name + $scope.pins[currentPinIndex].name);
+                
+                $rootScope.$broadcast('handleBroadcast');
+                $location.path('/');
+            };
+            $scope.deleteCrowd = function() {
+                delete $scope.pins[currentPinIndex];
+                $location.path('/');
+            };
+            function createAlbum(crowdName) {
+                
+                if ($scope.pins[currentPinIndex].data !== undefined) return;
+                
+                var postData = {
+                    title: crowdName,
+                    privacy: "public"
+                };
+
+                $http({method: 'POST', url: 'https://api.imgur.com/3/album/',
+                    headers: {'Authorization': 'Client-ID 4a358d16e826c56'},
+                    data: postData
+                }).success(function(data, status, headers, config) {
+                    $scope.album = data;
+                    var ref = new Firebase(fb);
+                    angular.extend($scope.pins[currentPinIndex],data);
+                    ref.set($scope.pins);
+                }).error(function(data, status, hearders, config) {
+                    console.log('ERROR');
+                });
+            }
         })
         ;
 
