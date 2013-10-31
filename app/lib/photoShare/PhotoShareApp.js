@@ -3,40 +3,6 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
                 $routeProvider.when('/photoShare', {templateUrl: 'photoShare.html', controller: 'PhotoShareCtrl'});
                 $routeProvider.otherwise({redirectTo: '/photoShare'});
             }])
-        .directive('fileButton', function() {
-            return {
-                restrict: "A",
-                template: '<form id="fileButton" method="post" enctype="multipart/form-data" ><input id="uploadInput" type="file" ng-model="file" style="display:none"/></form>',
-                replace: true,
-                scope: {
-                    onUploaded: '=onUploaded'
-                },
-                controller: function($scope, $element, $rootScope, $http) {
-                    $rootScope.$on('handleBroadcast', function() {
-                        $element.find('input').click();
-                    });
-                },
-                link: function(scope, element, attributes, $http) {
-                    scope.album = '';
-                    var albumDelete = "2OOgsRAJRG2fK7T";
-
-                    element.find('input').on('click', function() {
-                        this.value = null;
-                    });
-                    element.find('input').on('change', function() {
-                        var file = this.files[0];
-                        var fd = new FormData();
-                        fd.append("image", file);
-                        fd.append("album", albumDelete);
-                        fd.append("Authorization", "4a358d16e826c56");
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", "https://api.imgur.com/3/image");
-                        xhr.setRequestHeader("Authorization", "Client-ID 4a358d16e826c56");
-                        xhr.send(fd);
-                    });
-                }
-            };
-        })
         .controller('PhotoShareCtrl', function($scope, $http, $rootScope) {
             var album = "PCHRY";
             var albumDelete = "2OOgsRAJRG2fK7T";
