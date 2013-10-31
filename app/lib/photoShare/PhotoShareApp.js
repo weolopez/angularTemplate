@@ -8,15 +8,18 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
                 restrict: "A",
                 template: '<form id="fileButton" method="post" enctype="multipart/form-data" ><input id="uploadInput" type="file" ng-model="file" style="display:none"/></form>',
                 replace: true,
-                controller: function ($scope, $element, $rootScope ) {                    
+                scope: {
+                    onUploaded: '=onUploaded'
+                },
+                controller: function($scope, $element, $rootScope, $http) {
                     $rootScope.$on('handleBroadcast', function() {
                         $element.find('input').click();
                     });
                 },
-                link: function(scope, element, attributes, $rootScope) {
+                link: function(scope, element, attributes, $http) {
                     scope.album = '';
                     var albumDelete = "2OOgsRAJRG2fK7T";
- 
+
                     element.find('input').on('click', function() {
                         this.value = null;
                     });
@@ -50,7 +53,7 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
                     "icon": "icon-comment"
                 }
             ];
-             $scope.commentActions = [
+            $scope.commentActions = [
                 {
                     "name": "Add",
                     "icon": "icon-camera"
@@ -168,22 +171,41 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
             $http({method: 'GET', url: 'https://api.imgur.com/3/album/' + album + '/images',
                 headers: {'Authorization': 'Client-ID 4a358d16e826c56'}})
                     .success(function(data, status, headers, config) {
-                        $scope.pictures = data.data.slice(0, 5);
+                        $scope.pictures = data.data;//.slice(0, 5);
                     })
                     .error(function(data, status, hearders, config) {
                         console.log('ERROR');
                     });
-                    
+
             $scope.selectedType = function(index) {
-                if (index === $scope.CAMERA) $rootScope.$broadcast('handleBroadcast');
+                if (index === $scope.CAMERA)
+                    $('#fileinput').click();
+                //  $rootScope.$broadcast('handleBroadcast');
                 if (index === $scope.selectedIndex) {
                     $scope.selectedIndex = undefined;
                     return;
                 }
                 $scope.selectedIndex = index;
             };
-        })
-        ;
+            $scope.uploaded = function(e) {
+                console.log(e);
+            };
+            $scope.uploadFile = function(files) {
+                var fd = new FormData();
+                fd.append("image", files[0]);
+                fd.append("Authorization", "4a358d16e826c56");
+                $http.post('https://api.imgur.com/3/image', fd, {
+                    headers: {'Authorization': "Client-ID 4a358d16e826c56"}
+                })
+                        .success(function(data, status, headers, config) {
+                            console.log('success'+data);//.slice(0, 5);
+                        })
+                        .error(function(data, status, hearders, config) {
+                            console.log('ERROR');
+                        });
+
+            }
+        });
 
 /*
  * data
