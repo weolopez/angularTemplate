@@ -192,19 +192,26 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
             };
             $scope.uploadFile = function(files) {
                 var fd = new FormData();
-                fd.append("image", files[0]);
-                fd.append("Authorization", "4a358d16e826c56");
-                $http.post('https://api.imgur.com/3/image', fd, {
-                    headers: {'Authorization': "Client-ID 4a358d16e826c56"}
+                var file = files[0];
+                fd.append("image", file);
+                fd.append("album", albumDelete);
+                fd.append("Authorization", "Client-ID 4a358d16e826c56");
+                 $http.post('https://api.imgur.com/3/image', fd, {
+                    headers: {
+                        "Accept": "*/*",
+                        "Authorization": "Client-ID 4a358d16e826c56"
+                    },
+                    transformRequest: function(data) { return file; },
+                    album: albumDelete
                 })
                         .success(function(data, status, headers, config) {
-                            console.log('success'+data);//.slice(0, 5);
+                            console.log('success' + data);//.slice(0, 5);
                         })
                         .error(function(data, status, hearders, config) {
                             console.log('ERROR');
                         });
 
-            }
+            };
         });
 
 /*

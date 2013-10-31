@@ -20,7 +20,7 @@
                 <h3>{{comment.text}}</h3>
             </li>
         </ul>
-        <input id="fileinput" style="visibility: hidden;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+        <form id="fileButton" method="post" enctype="multipart/form-data" ><input id="fileinput" style="display: none;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/></form>
         <nav id="action-nav">
             <ul>
                 <li ng-repeat="action in commentActions"><a ng-click="selectedAction($index)"><i ng-class="action.icon"></i></a></li>
