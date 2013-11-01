@@ -1,11 +1,23 @@
 <div style="width: 100%;height: 100%;">              
-    <leaflet defaults="defaults" markers="markers" center="center" layers="layers" events="events" height="100%" width="100%" style="position: absolute"></leaflet>
+    <leaflet defaults="defaults" markers="markers" center="center" layers="layers" events="events" height="100%" width="100%" style="position: absolute" ng-hide="isMap"></leaflet>
+
+    <ul data-rn-carousel style="height: 100%;" ng-show="isMap">                 
+        <li ng-repeat="picture in pictures" 
+            style="background-image:url({{ picture.link}}); 
+            background-position: center;
+            background-size: auto {{windowHeight}}px;
+            background-repeat: no-repeat;
+            height: {{windowHeight}}px;">
+        </li>
+    </ul>   
+
     <nav id="icon-list">
         <ul class="clearfix" >            
-            <li ng-repeat="type in types" ng-class="{active: $index == selectedIndex}"><a ng-click="selectedType($index)"><i ng-class="type.icon"></i> <span>{{type.name}}</span></a></li>
+            <li ng-repeat="type in types" ng-class="{active: ( ($index === selectedIndex) &&
+            (type['toggle']===undefined) )}" ng-hide="type.hide"><a ng-click="selectedType($index)"><i ng-class="type.icon"></i> <span>{{type.name}}</span></a></li>
         </ul>    
     </nav>
-    
+
     <div id="comment-panel" ng-show="pinClicked">
         <label id="crowd-name" for="name-input">Crowd Name: </label>
         <input id="name-input" ng-model="crowd.name" type="text" size="20" />
@@ -15,12 +27,13 @@
         <br>
         <label id="crowd-pins" for="pins-input">End Date: </label>
         <input id="pins-input" ng-model="crowd.end" type="text" size="20" />
-        <button ng-click="click()" style="background: none;color:white;border: none;"><i class="icon-camera"></i> Crowd</button>
+        <hr>
+        <button ng-click="addPhoto()" style="background: none;color:white;border: none;"><i class="icon-camera"></i> Crowd</button>
         <button ng-click="saveCrowd()" style="background: none;color:white;border: none;"><i class="icon-save"></i> Save</button>
         <button ng-click="deleteCrowd()" style="background: none;color:white;border: none;"><i class="icon-remove"></i> Delete</button>
     </div>    
-    
-    <div data-file-button></div>     
+
+    <input id="fileinput" style="display: none;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
 </div>
 
 
