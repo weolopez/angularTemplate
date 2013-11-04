@@ -1,15 +1,8 @@
 <div style="width: 100%;height: 100%;">              
     <leaflet defaults="defaults" markers="markers" center="center" layers="layers" events="events" height="100%" width="100%" style="position: absolute" ng-hide="isMap"></leaflet>
 
-    <ul data-rn-carousel style="height: 100%;" ng-show="isMap">                 
-        <li ng-repeat="picture in pictures" 
-            style="background-image:url({{ picture.link}}); 
-            background-position: center;
-            background-size: auto {{windowHeight}}px;
-            background-repeat: no-repeat;
-            height: {{windowHeight}}px;">
-        </li>
-    </ul>   
+
+    <photo-share album="albums" onUpload="uploaded" ng-show="isMap"></photo-share>
 
     <nav id="icon-list">
         <ul class="clearfix" >            
@@ -33,7 +26,6 @@
         <button ng-click="deleteCrowd()" style="background: none;color:white;border: none;"><i class="icon-remove"></i> Delete</button>
     </div>    
 
-    <input id="fileinput" style="display: none;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
 </div>
 
 

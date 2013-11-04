@@ -1,14 +1,5 @@
 <div style="width: 100%;height: 100%;">  
-    <ul data-rn-carousel class="image" >            
-        <li ng-repeat="picture in pictures" 
-            style="background-image:url({{ picture.link}}); 
-            background-position: center;
-            background-size: auto {{windowHeight}}px;
-            background-repeat: no-repeat;
-            height: {{windowHeight}}px;">
-        </li>
-    </ul>   
-
+    <photo-share album="albums" onUpload="uploaded"></photo-share>
     <nav id="icon-list">
         <ul class="clearfix" >            
             <li ng-repeat="type in types" ng-class="{active: $index === selectedIndex}"><a ng-click="selectedType($index)"><i ng-class="type.icon"></i> <span>{{type.name}}</span></a></li>
@@ -20,7 +11,6 @@
                 <h3>{{comment.text}}</h3>
             </li>
         </ul>
-<input id="fileinput" style="display: none;" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
         <nav id="action-nav">
             <ul>
                 <li ng-repeat="action in commentActions"><a ng-click="selectedAction($index)"><i ng-class="action.icon"></i></a></li>

@@ -1,11 +1,13 @@
-angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
+angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel', 'photoShareDirective'])
         .config(['$routeProvider', function($routeProvider) {
                 $routeProvider.when('/photoShare', {templateUrl: 'photoShare.html', controller: 'PhotoShareCtrl'});
                 $routeProvider.otherwise({redirectTo: '/photoShare'});
             }])
         .controller('PhotoShareCtrl', function($scope, $http, $rootScope) {
-            var album = "PCHRY";
-            var albumDelete = "2OOgsRAJRG2fK7T";
+            $scope.albums = {
+                name: "PCHRY",
+                deletehash: "2OOgsRAJRG2fK7T"
+            };
             $scope.COMMENT = 1;
             $scope.CAMERA = 0;
 
@@ -123,6 +125,16 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
              .error(function(data, status, hearders, config) {
              console.log('ERROR');
              });
+             
+             
+             $http({method: 'GET', url: 'https://api.imgur.com/3/album/' + album + '/images',
+             headers: {'Authorization': 'Client-ID 4a358d16e826c56'}})
+             .success(function(data, status, headers, config) {
+             $scope.pictures = data.data;//.slice(0, 5);
+             })
+             .error(function(data, status, hearders, config) {
+             console.log('ERROR');
+             });
              */
             $scope.sportImages = [];
             for (var j = 0; j < 10; j++) {
@@ -134,14 +146,6 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
                 $scope.windowWidth = window.innerWidth - 40;
             }
 
-            $http({method: 'GET', url: 'https://api.imgur.com/3/album/' + album + '/images',
-                headers: {'Authorization': 'Client-ID 4a358d16e826c56'}})
-                    .success(function(data, status, headers, config) {
-                        $scope.pictures = data.data;//.slice(0, 5);
-                    })
-                    .error(function(data, status, hearders, config) {
-                        console.log('ERROR');
-                    });
 
             $scope.selectedType = function(index) {
                 if (index === $scope.CAMERA)
@@ -153,8 +157,12 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
                 }
                 $scope.selectedIndex = index;
             };
-            $scope.uploaded = function(e) {
-                console.log(e);
+            $scope.uploaded = function(data, status, headers, config) {
+                if ($scope.pins[currentPinIndex].album.photos === undefined)
+                    $scope.pins[currentPinIndex].album.photos = [];
+                var ref = new Firebase(fb);
+                $scope.pins[currentPinIndex].album.photos.push(data.data);
+                ref.set($scope.pins);
             };
             $scope.uploadFile = function(files) {
                 var fd = new FormData();
@@ -162,12 +170,14 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel'])
                 fd.append("image", file);
                 fd.append("album", albumDelete);
                 fd.append("Authorization", "Client-ID 4a358d16e826c56");
-                 $http.post('https://api.imgur.com/3/image', fd, {
+                $http.post('https://api.imgur.com/3/image', fd, {
                     headers: {
                         "Accept": "*/*",
                         "Authorization": "Client-ID 4a358d16e826c56"
                     },
-                    transformRequest: function(data) { return file; },
+                    transformRequest: function(data) {
+                        return file;
+                    },
                     album: albumDelete
                 })
                         .success(function(data, status, headers, config) {

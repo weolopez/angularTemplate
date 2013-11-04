@@ -1,4 +1,4 @@
-angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolabResourceHttp', 'ngStorage', 'firebase', 'iLoveCrowdsApp'])
+angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolabResourceHttp', 'ngStorage', 'firebase', 'iLoveCrowdsApp','photoShareDirective'])
         .config(['$routeProvider', function($routeProvider) {
                 $routeProvider.otherwise({redirectTo: '/home'});
                 $routeProvider.when('/map/:crowdId/:appId', {templateUrl: 'Map.html', controller: 'MapCtrl', resolve: {
@@ -26,10 +26,25 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
         })
         .factory('PhotoServices', function($http) {
             return {
-                
+                createAlbum: function(crowdName, album, successCreate) {
+                if (album !== undefined)
+                    return;
+
+                var postData = {
+                    title: crowdName,
+                    privacy: "public"
+                };
+
+                $http({method: 'POST', url: 'https://api.imgur.com/3/album/',
+                    headers: {'Authorization': 'Client-ID 4a358d16e826c56'},
+                    data: postData
+                }).success(successCreate).error(function(data, status, hearders, config) {
+                    console.log('ERROR');
+                });
+            }
             };
         })
-        .controller('MapCtrl', function($scope, $http, $location, $rootScope, $localStorage, $sessionStorage, appName, crowdName, angularFire, fbURL, AppConfig) {
+        .controller('MapCtrl', function($scope, $http, $location, $rootScope, $localStorage, $sessionStorage, appName, crowdName, angularFire, fbURL, AppConfig, PhotoServices) {
             //SPECIAL CROWD USECASE
             if (appName === 'Crowd')
                 appName = 'Crowds';
@@ -47,6 +62,12 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
                         $scope.selectedIndex = i;
                         $scope.currentType = $scope.types[i];
                     }
+                        
+            $scope.albums = {
+                name: "PCHRY",
+                deletehash: "2OOgsRAJRG2fK7T"
+            };
+            
             //APP FUNCTION
             $scope.selectedType = function(index) {
                 if (index === $scope.selectedIndex) {
@@ -199,7 +220,7 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
             });
             
             $scope.saveCrowd = function() {
-                createAlbum($scope.crowd.name + $scope.pins[currentPinIndex].name);
+                PhotoServices.createAlbum($scope.crowd.name + $scope.pins[currentPinIndex].name, $scope.pins[currentPinIndex].album,successCreateAlbum);
 
                 $scope.pins[currentPinIndex].crowd = $scope.crowd;
                 $scope.pinClicked = false;
@@ -207,7 +228,7 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
                 $location.path('/');
             };
             $scope.addPhoto = function() {
-                createAlbum($scope.crowd.name + $scope.pins[currentPinIndex].name);
+                PhotoServices.createAlbum($scope.crowd.name + $scope.pins[currentPinIndex].name, $scope.pins[currentPinIndex].album, successCreateAlbum);
 
                 $('#fileinput').click();
             };
@@ -215,27 +236,13 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'leaflet-directive', 'mongolab
                 delete $scope.pins[currentPinIndex];
                 $location.path('/');
             };
-            function createAlbum(crowdName) {
-
-                if ($scope.pins[currentPinIndex].album !== undefined)
-                    return;
-
-                var postData = {
-                    title: crowdName,
-                    privacy: "public"
-                };
-
-                $http({method: 'POST', url: 'https://api.imgur.com/3/album/',
-                    headers: {'Authorization': 'Client-ID 4a358d16e826c56'},
-                    data: postData
-                }).success(function(data, status, headers, config) {
+            function successCreateAlbum(data, status, headers, config) {
                     var ref = new Firebase(fb);
                     angular.extend($scope.pins[currentPinIndex], {album: data.data});
                     ref.set($scope.pins);
-                }).error(function(data, status, hearders, config) {
-                    console.log('ERROR');
-                });
-            }
+                };
+                
+            
             $scope.uploadFile = function(files) {
                 var fd = new FormData();
                 var file = files[0];
