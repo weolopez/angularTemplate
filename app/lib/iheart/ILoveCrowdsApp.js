@@ -15,7 +15,7 @@ angular.module('iLoveCrowdsApp', ['ngRoute', 'ngAnimate', 'ngStorage', 'mongolab
                             return App.getCollection($route.current.params.appId).all();
                         }
                     }});
-                $routeProvider.otherwise({redirectTo: '/crowds/crowds/Apps'});
+                $routeProvider.otherwise({redirectTo: '/splash'}); //crowds/crowds/Apps
             }])
         .constant('MONGOLAB_CONFIG', {API_KEY: '50f36e05e4b0b9deb24829a0', DB_NAME: 'weolopez'})
         .directive('eatClick', function() {
@@ -76,12 +76,12 @@ angular.module('iLoveCrowdsApp', ['ngRoute', 'ngAnimate', 'ngStorage', 'mongolab
         })
         .controller('AppsCtrl', function($scope, $location, $localStorage, AppConfig) {
             //INIT MONGO
-            $scope.AppConfig = AppConfig[0]; //TODO handle Mongo Down
-            $scope.types = $scope.AppConfig.types;
+            $scope.types = AppConfig[0].types;
 
             $scope.$watch('currentType', function(newType, oldType) {
                 $localStorage.currentType = newType;
             });
+            
         })
         ;
 
