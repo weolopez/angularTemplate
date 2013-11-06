@@ -1,4 +1,4 @@
-angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'angular-carousel', 'photoShareDirective'])
+angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'photoShareDirective'])
         .config(['$routeProvider', function($routeProvider) {
                 $routeProvider.when('/photoShare', {templateUrl: 'photoShare.html', controller: 'PhotoShareCtrl'});
                 $routeProvider.otherwise({redirectTo: '/photoShare'});

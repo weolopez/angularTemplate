@@ -1,4 +1,4 @@
-angular.module('photoShareDirective',[])
+angular.module('photoShareDirective',['angular-carousel'])
         .directive('photoShare', function() {
     return {
         restrict: 'E',

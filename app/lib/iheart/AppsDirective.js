@@ -1,6 +1,6 @@
 'use strict';
 angular.module('AppsDirective', [])
-        .directive('apps', function() {
+        .directive('crowdApps', function() {
             return {
                 restrict: 'E',
                 template: '<nav id="icon-list"><ul class="clearfix" ><li ng-repeat="type in appConfig" ng-class="{active: ( ($index === selectedIndex) && (type[\'toggle\']===undefined) )}" ng-hide="type.hide"><a ng-click="selectedType($index)"><i ng-class="type.icon"></i> <span>{{type.name}}</span></a></li></ul></nav>',
