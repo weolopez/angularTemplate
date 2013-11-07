@@ -1,3 +1,15 @@
-<div style="width: 100%;height: 100%;">  
+<div style="width: 100%;height: 100%;">              
+    <div ng-show="isMap">
+        <map-synch base="base" app-name="appName" crowd-name="crowdName"></map-synch>
+    </div>
+
+    <div  ng-hide="isMap">
+        <photo-share album="albums" onUpload="uploaded"></photo-share>
+    </div> 
+
     <crowd-apps app-config="types" current-type="currentType"></crowd-apps>
+
 </div>
+
+
+

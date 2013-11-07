@@ -146,17 +146,18 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'photoShareDirective'])
                 $scope.windowWidth = window.innerWidth - 40;
             }
 
-
             $scope.selectedType = function(index) {
                 if (index === $scope.CAMERA)
                     $('#fileinput').click();
                 //  $rootScope.$broadcast('handleBroadcast');
+                
                 if (index === $scope.selectedIndex) {
                     $scope.selectedIndex = undefined;
                     return;
                 }
                 $scope.selectedIndex = index;
             };
+            
             $scope.uploaded = function(data, status, headers, config) {
                 if ($scope.pins[currentPinIndex].album.photos === undefined)
                     $scope.pins[currentPinIndex].album.photos = [];
@@ -164,6 +165,7 @@ angular.module('photoShareApp', ['ngRoute', 'ngAnimate', 'photoShareDirective'])
                 $scope.pins[currentPinIndex].album.photos.push(data.data);
                 ref.set($scope.pins);
             };
+            
             $scope.uploadFile = function(files) {
                 var fd = new FormData();
                 var file = files[0];

@@ -4,7 +4,7 @@ angular.module('iLoveCrowdsApp', ['ngRoute', 'ngAnimate', 'ngStorage', 'mongolab
                 $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
                 $routeProvider.when('/apps', {templateUrl: 'apps.html', controller: 'SplashCtrl'});
                 $routeProvider.when('/start', {templateUrl: 'partials/crowds.html', controller: 'CrowdsCtrl'});
-                $routeProvider.when('/crowds/:crowdId/:appId', {templateUrl: 'apps.html', controller: 'AppsCtrl', resolve: {
+                $routeProvider.when('/app/:crowdId/:appId', {templateUrl: 'apps.html', controller: 'AppsCtrl', resolve: {
                         appName: function($route) {
                             return $route.current.params.appId;
                         },

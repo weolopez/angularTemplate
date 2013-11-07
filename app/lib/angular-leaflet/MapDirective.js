@@ -1,4 +1,6 @@
 'use strict';
+//TODO merge localStorage and angularFire into a service
+
 angular.module('MapDirective', ['firebase', 'leaflet-directive', 'ngStorage'])
         .value('fbURL', 'https://crowds.firebaseio.com/')
         .directive('mapSynch', function() {
@@ -11,8 +13,10 @@ angular.module('MapDirective', ['firebase', 'leaflet-directive', 'ngStorage'])
                     isMap: '=',
                     appName: '='
                 },
-                controller: function($scope, $location, $localStorage, angularFire, fbURL) {
-                    if ($scope.base === undefined) return; 
+                controller: function($scope, $location, $rootScope, $localStorage, angularFire, fbURL) {                    
+                    if ($scope.base === undefined)
+                        return;
+                    $scope.currentPin = $localStorage.currentPin;
                     
                     //INIT MAP
                     $scope.markers = {};
@@ -21,6 +25,27 @@ angular.module('MapDirective', ['firebase', 'leaflet-directive', 'ngStorage'])
                     angular.extend($scope.center, {
                         lat: $localStorage.position.coords.latitude,
                         lng: $localStorage.position.coords.longitude
+                    });    
+                    
+                    if ($scope.currentPin !== undefined) addPin($scope.currentPin);
+
+                    $scope.$on("TYPE_CHANGE", function(event, data) {
+                        $scope.currentType = data;
+
+                        if (data === undefined) {
+                            $scope.markers = {};
+                            return;
+                        }
+                        if (data.type === 'marker') {
+                            if ($scope.pins === undefined)
+                                return;
+                            $scope.markers = {};
+                            for (var i = 0; i < $scope.pins.length; i++) {
+                                var pin = $scope.pins[i];
+                                if (pin.type === data.name)
+                                    addPin(pin);
+                            }
+                        }
                     });
 
                     //INIT FIREBASE current APP State
@@ -92,12 +117,13 @@ angular.module('MapDirective', ['firebase', 'leaflet-directive', 'ngStorage'])
                         addPin(pin);
                         $scope.pins.push(pin);
                     });
-                    var currentPinIndex = undefined;
+                    
                     $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                         for (var i = 0; i < $scope.pins.length; i++) {
                             if ($scope.pins[i].name === args.markerName) {
-                                $localStorage.currentPin = $scope.pins[i];
-                                currentPinIndex = i;
+                                $localStorage.currentPin = $scope.pins[i]; 
+                                $rootScope.$broadcast("PIN_CHANGE", $scope.pins[i]);
+                                
                                 var path = '/' + $scope.currentType.appType + '/' + $scope.crowdName + '/' + $scope.currentType.path;
 
                                 $localStorage.position.coords.latitude = args.leafletEvent.latlng.lat;

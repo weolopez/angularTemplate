@@ -1,7 +1,7 @@
-angular.module('mapApp', ['ngRoute', 'ngAnimate', 'mongolabResourceHttp', 'ngStorage', 'photoShareDirective', 'AppsDirective', 'MapDirective'])
+angular.module('mapApp', ['ngRoute', 'ngAnimate', 'mongolabResourceHttp', 'ngStorage', 'iLoveCrowdsApp', 'photoShareDirective', 'AppsDirective', 'MapDirective'])
         .config(['$routeProvider', function($routeProvider) {
                 $routeProvider.otherwise({redirectTo: '/home'});
-                $routeProvider.when('/app/:crowdId/:appId', {templateUrl: '../iheart/apps.html', controller: 'MapCtrl', resolve: {
+                $routeProvider.when('/map/:crowdId/:appId', {templateUrl: 'Map.html', controller: 'MapCtrl', resolve: {
                         appName: function($route) {
                             return $route.current.params.appId;
                         },
@@ -12,7 +12,7 @@ angular.module('mapApp', ['ngRoute', 'ngAnimate', 'mongolabResourceHttp', 'ngSto
                             return App.getCollection($route.current.params.appId).all();
                         }
                     }});
-                $routeProvider.when('/home', {templateUrl: '../iheart/splash.html', controller: 'SplashCtrl'});
+                $routeProvider.when('/home', {templateUrl: 'splash.html', controller: 'SplashCtrl'});
             }])
         .constant('MONGOLAB_CONFIG', {API_KEY: '50f36e05e4b0b9deb24829a0', DB_NAME: 'weolopez'})
         .factory('App', function($mongolabResourceHttp) {
