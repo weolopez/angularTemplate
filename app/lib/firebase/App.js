@@ -92,7 +92,7 @@ angular.module('App', ['ngRoute', 'ngAnimate', 'ngStorage', 'mongolabResourceHtt
         .controller('CrowdsCtrl', function($scope, $http, $location, $rootScope, $window) {
         })
         .controller('AppsCtrl', function($scope, $http, $location, $rootScope, $localStorage, $sessionStorage, crowdName, AppConfig, PhotoServices) {
-            var initializing = true;             
+            var initializing = true;
             $scope.crowdName = crowdName;
 
             //INIT from mongo
@@ -100,12 +100,17 @@ angular.module('App', ['ngRoute', 'ngAnimate', 'ngStorage', 'mongolabResourceHtt
             $scope.base = AppConfig[0].base;
             $scope.isMap = (AppConfig[0].isMap === 'true');
             $scope.appName = AppConfig[0].appName;
-            
+
             //INIT APP STATE (TYPES) //TODO Normalize Types
             $scope.$sessionStorage = $localStorage;
             $scope.currentType = $localStorage.currentType;
             $scope.currentPin = $localStorage.currentPin;
-            
+            if ($scope.currentPin === undefined)
+                $scope.currentPin = {
+                    lat: $localStorage.position.coords.latitude,
+                    lng: $localStorage.position.coords.longitude
+                };
+
             if ($scope.currentType !== undefined)
                 for (var i = 0; i < $scope.types.length; i++)
                     if ($scope.types[i].name === $scope.currentType.name) {
@@ -113,19 +118,19 @@ angular.module('App', ['ngRoute', 'ngAnimate', 'ngStorage', 'mongolabResourceHtt
                         $scope.currentType = $scope.types[i];
                     }
 
-            $scope.$watch('currentType', function(newType, oldType) {
+            $scope.$on("TYPE_CHANGE", function(event, data) {
                 if (initializing) {
                     initializing = false;
                     return;
                 }
-                $localStorage.currentType = newType;
+                $localStorage.currentType = data;
                 if (newType === undefined) {
                     $scope.markers = {};
                     return;
                 }
 
-          //      if ($scope.currentType.type === 'background')
-          //          $scope.isMap = !$scope.isMap;
+                //      if ($scope.currentType.type === 'background')
+                //          $scope.isMap = !$scope.isMap;
                 if ($scope.currentType.type === 'marker') {
                     if ($scope.pins === undefined)
                         return;
@@ -146,6 +151,21 @@ angular.module('App', ['ngRoute', 'ngAnimate', 'ngStorage', 'mongolabResourceHtt
                 }
 
             });
+
+            $scope.$on("PIN_CHANGE", function(event, data) {
+                $localStorage.currentPin = data;
+                if ($localStorage.currentPin.type.appType === 'setting') {
+                    $scope.crowd = $localStorage.currentPin.crowd;
+                    $scope.pinClicked = true;
+                }
+                else {
+                var path = '/' + $localStorage.currentPin.type.appType + '/' + $scope.crowdName + '/' + $localStorage.currentPin.type.path;
+                    console.log("Path" + path);
+                    console.log($localStorage.currentPin.type.appTypee + "Marker:click:" + path);
+                    $location.path(path);
+                }
+            });
+
             $scope.albums = {
                 name: "PCHRY",
                 deletehash: "2OOgsRAJRG2fK7T"

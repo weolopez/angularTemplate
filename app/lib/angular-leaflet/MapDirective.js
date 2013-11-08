@@ -11,23 +11,22 @@ angular.module('MapDirective', ['firebase', 'leaflet-directive', 'ngStorage'])
                     base: '=',
                     crowdName: '=',
                     isMap: '=',
-                    appName: '='
+                    appName: '=',
+                    currentPin: '='
                 },
-                controller: function($scope, $location, $rootScope, $localStorage, angularFire, fbURL) {                    
+                controller: function($scope, $location, $rootScope, angularFire, fbURL) {                    
                     if ($scope.base === undefined)
-                        return;
-                    $scope.currentPin = $localStorage.currentPin;
+                        return;                    
                     
-                    //INIT MAP
+                                        //INIT MAP
                     $scope.markers = {};
                     angular.extend($scope, $scope.base);
                     angular.extend($scope.center, $scope.base.center);
                     angular.extend($scope.center, {
-                        lat: $localStorage.position.coords.latitude,
-                        lng: $localStorage.position.coords.longitude
+                        lat: $scope.currentPin.lat,
+                        lng: $scope.currentPin.lng
                     });    
-                    
-                    if ($scope.currentPin !== undefined) addPin($scope.currentPin);
+                    if ($scope.currentPin.name !== undefined) addPin($scope.currentPin);
 
                     $scope.$on("TYPE_CHANGE", function(event, data) {
                         $scope.currentType = data;
@@ -42,7 +41,7 @@ angular.module('MapDirective', ['firebase', 'leaflet-directive', 'ngStorage'])
                             $scope.markers = {};
                             for (var i = 0; i < $scope.pins.length; i++) {
                                 var pin = $scope.pins[i];
-                                if (pin.type === data.name)
+                                if (pin.type.name === data.name)
                                     addPin(pin);
                             }
                         }
@@ -83,13 +82,13 @@ angular.module('MapDirective', ['firebase', 'leaflet-directive', 'ngStorage'])
                     function addPin(pin) {
                         var marker = {};
                         var redMarker = L.AwesomeMarkers.icon({
-                            icon: pin.icon,
+                            icon: pin.type.icon,
                             color: 'red'
                         });
                         marker[pin.name] = {
                             lat: pin.lat,
                             lng: pin.lng,
-                            title: pin.type,
+                            title: pin.type.name,
                             focus: false,
                             draggable: true
                         };
@@ -109,8 +108,7 @@ angular.module('MapDirective', ['firebase', 'leaflet-directive', 'ngStorage'])
                             name: name,
                             crowd: $scope.crowdName,
                             app: $scope.appName,
-                            type: $scope.currentType.name,
-                            icon: $scope.currentType.icon,
+                            type: $scope.currentType,
                             lat: args.leafletEvent.latlng.lat,
                             lng: args.leafletEvent.latlng.lng
                         };
@@ -121,29 +119,11 @@ angular.module('MapDirective', ['firebase', 'leaflet-directive', 'ngStorage'])
                     $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                         for (var i = 0; i < $scope.pins.length; i++) {
                             if ($scope.pins[i].name === args.markerName) {
-                                $localStorage.currentPin = $scope.pins[i]; 
                                 $rootScope.$broadcast("PIN_CHANGE", $scope.pins[i]);
-                                
-                                var path = '/' + $scope.currentType.appType + '/' + $scope.crowdName + '/' + $scope.currentType.path;
-
-                                $localStorage.position.coords.latitude = args.leafletEvent.latlng.lat;
-                                $localStorage.position.coords.longitude = args.leafletEvent.latlng.lng;
-                                console.log($scope.currentType.appType + "Marker:click:" + path);
-
-                                if ($scope.currentType.appType === '') {
-                                    $scope.crowd = $scope.pins[i].crowd;
-                                    $scope.pinClicked = true;
-                                }
-                                else {
-                                    console.log("Path" + path);
-                                    $location.path(path);
-                                }
                             }
                         }
                     });
                     $scope.$on('leafletDirectiveMarker.dragend', function(e, args) {
-                        console.log("Marker:dragend" + args.leafletEvent.target.getLatLng().lat);
-                        console.log(args);
                         for (var i = 0; i < $scope.pins.length; i++) {
                             if ($scope.pins[i].name === args.markerName) {
                                 $scope.pins[i].lat = args.leafletEvent.target.getLatLng().lat;
