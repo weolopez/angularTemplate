@@ -159,9 +159,9 @@ angular.module('App', ['ngRoute', 'ngAnimate', 'ngStorage', 'mongolabResourceHtt
                     $scope.pinClicked = true;
                 }
                 else {
-                var path = '/' + $localStorage.currentPin.type.appType + '/' + $scope.crowdName + '/' + $localStorage.currentPin.type.path;
+                var path = '/app/' + $scope.crowdName + '/' + $localStorage.currentPin.type.path;
                     console.log("Path" + path);
-                    console.log($localStorage.currentPin.type.appTypee + "Marker:click:" + path);
+                    console.log($localStorage.currentPin.type.appType + "Marker:click:" + path);
                     $location.path(path);
                 }
             });

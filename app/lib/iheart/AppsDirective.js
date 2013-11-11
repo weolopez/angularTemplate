@@ -47,7 +47,7 @@ angular.module('AppsDirective', [])
         .directive('crowdApps', function() {
             return {
                 restrict: 'E',
-                template: '<div><nav id="icon-list"><ul class="clearfix" ><li ng-repeat="type in appConfig" ng-class="{active: ( ($index === selectedIndex) && (type[\'toggle\']===undefined) )}" ng-hide="type.hide"><a ng-click="selectedType($index)"><i ng-class="type.icon"></i> <span>{{type.name}}</span></a></li></ul></nav><ng-include src="lib/iheart/forms/crowd.html"></ng-include></div>',
+                template: '<div><nav id="icon-list"><ul class="clearfix" ><li ng-repeat="type in appConfig" ng-class="{active: ( ($index === selectedIndex) && (type[\'toggle\']===undefined) )}" ng-hide="type.hide"><a ng-click="selectedType($index)"><i ng-class="type.icon"></i> <span>{{type.name}}</span></a></li></ul></nav></div>',
                 scope: {
                     appConfig: '=',
                     currentType: '='
