@@ -5,19 +5,7 @@
             <li ng-repeat="type in types" ng-class="{active: $index === selectedIndex}"><a ng-click="selectedType($index)"><i ng-class="type.icon"></i> <span>{{type.name}}</span></a></li>
         </ul>        
     </nav>
-    <div id="comment-panel" ng-show="selectedIndex === COMMENT">
-        <ul>
-            <li ng-repeat="comment in comments">
-                <h3>{{comment.text}}</h3>
-            </li>
-        </ul>
-        <nav id="action-nav">
-            <ul>
-                <li ng-repeat="action in commentActions"><a ng-click="selectedAction($index)"><i ng-class="action.icon"></i></a></li>
-            </ul>
-        </nav>
-        <textarea ng-model="newComment"></textarea>
-    </div>        
+    <ng-include src="'forms/CommentForm.html'"></ng-include>
 </div>
 
 
