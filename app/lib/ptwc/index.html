@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="myApp">
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<link rel="stylesheet" href="App.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular.js"></script>
+		<script src="http://code.angularjs.org/1.2.3/angular-route.js"></script>
+		<script src="http://code.angularjs.org/1.2.3/angular-animate.js"></script>
+		<script src="AppsDirective.js"></script>
+
+		<style>
+
+		</style>
+	</head>
+	<body ng-controller="myController">
+		<div id="app">
+			<ng-view></ng-view>
+			<crowd-apps app-config="types" current-type="currentType"></crowd-apps>
+		</div>
+
+		<script>
+				var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'AppsDirective']);
+
+				app.config(['$routeProvider', function($routeProvider) {
+						$routeProvider.when('/view1', {template: '<div><button ng-click="sayHello()">ENTER</button>This is {{templateName}}</div>', controller: 'MyCtrl1'});
+						$routeProvider.when('/view2', {template: '<div></div>.', controller: 'MyCtrl2'});
+						$routeProvider.otherwise({redirectTo: '/view1'});
+					}]);
+
+				app.controller('myController', function($scope, $timeout, $location) {
+					$scope.sayHello = function() {
+						$location.path('/view2' === $location.path() ? '/' : '/view2');
+					}
+
+					$scope.$watch('testValue', function(newValue, oldValue) {
+						if (newValue === 'hello') {
+							alert('before apply called!');
+							$timeout(function() {
+								alert('after apply called!');
+							})
+						}
+					});
+					$scope.types = [
+						{
+							"name": "Home",
+							"icon": "icon-home",
+							"type": "nav",
+							"appType": "home",
+							"path": "home"
+						},
+						{
+							"name": "Group",
+							"icon": "icon-heart",
+							"type": "marker",
+							"appType": "app",
+							"path": "Crowd"
+						},
+						{
+							"name": "Quarters",
+							"icon": "icon-heart",
+							"type": "background",
+						},
+						{
+							"name": "Semi",
+							"icon": "icon-heart",
+							"type": "background"
+						},
+						{
+							"name": "Final",
+							"icon": "icon-heart",
+							"type": "background"
+						}
+					]
+				});
+				app.controller('MyCtrl1', function($scope) {
+					$scope.templateName = 'template for view 1 in controler MyCtrl1';
+				});
+				app.controller('MyCtrl2', function($scope) {
+				});
+		</script>
+	</body>
+</html>
