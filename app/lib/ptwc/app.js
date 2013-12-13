@@ -59,6 +59,10 @@ app.controller('MyCtrl1', function($scope) {
 app.controller('MyCtrl2', function($scope) {
 });
 app.controller('GroupCtrl', function($scope) {
+        $scope.filterClass = function(icon) {
+            return icon.substr(icon.indexOf('class')+3,icon.indexOf('title')-3);
+        };
+        
 	$scope.group = [
 	{
 		"no": "1", 
@@ -66,10 +70,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Sao Paulo ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1047/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43924/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_bra\" title=\"Brazil\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_bra", 
 		"homeTeamName": "Brazil", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43938/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_cro\" title=\"Croatia\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_cro", 
 		"awayTeamName": "Croatia"
 	}, 
 	{
@@ -78,10 +82,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Natal ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=21518/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43911/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_mex\" title=\"Mexico\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_mex", 
 		"homeTeamName": "Mexico", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43849/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_cmr\" title=\"Cameroon\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_cmr", 
 		"awayTeamName": "Cameroon"
 	}, 
 	{
@@ -90,10 +94,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Fortaleza ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=11693/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43924/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_bra\" title=\"Brazil\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_bra", 
 		"homeTeamName": "Brazil", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43911/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_mex\" title=\"Mexico\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_mex", 
 		"awayTeamName": "Mexico"
 	}, 
 	{
@@ -102,10 +106,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Manaus ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=2037/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43849/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_cmr\" title=\"Cameroon\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_cmr", 
 		"homeTeamName": "Cameroon", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43938/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_cro\" title=\"Croatia\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_cro", 
 		"awayTeamName": "Croatia"
 	}, 
 	{
@@ -114,10 +118,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Brasilia ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1143/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43849/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_cmr\" title=\"Cameroon\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_cmr", 
 		"homeTeamName": "Cameroon", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43924/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_bra\" title=\"Brazil\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_bra", 
 		"awayTeamName": "Brazil"
 	}, 
 	{
@@ -126,10 +130,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Recife ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6099/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43938/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_cro\" title=\"Croatia\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_cro", 
 		"homeTeamName": "Croatia", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43911/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_mex\" title=\"Mexico\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_mex", 
 		"awayTeamName": "Mexico"
 	}, 
 	{
@@ -138,10 +142,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Salvador", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50071/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43969/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_esp\" title=\"Spain\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_esp", 
 		"homeTeamName": "Spain", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43960/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_ned\" title=\"Netherlands\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_ned", 
 		"awayTeamName": "Netherlands"
 	}, 
 	{
@@ -150,10 +154,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Cuiaba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50053/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43925/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_chi\" title=\"Chile\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_chi", 
 		"homeTeamName": "Chile", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43976/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_aus\" title=\"Australia\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_aus", 
 		"awayTeamName": "Australia"
 	}, 
 	{
@@ -162,10 +166,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Rio De Janeiro ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1141/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43969/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_esp\" title=\"Spain\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_esp", 
 		"homeTeamName": "Spain", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43925/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_chi\" title=\"Chile\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_chi", 
 		"awayTeamName": "Chile"
 	}, 
 	{
@@ -174,10 +178,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Porto Alegre ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1140/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43976/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_aus\" title=\"Australia\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_aus", 
 		"homeTeamName": "Australia", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43960/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_ned\" title=\"Netherlands\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_ned", 
 		"awayTeamName": "Netherlands"
 	}, 
 	{
@@ -186,10 +190,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Curitiba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=35400/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43976/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_aus\" title=\"Australia\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_aus", 
 		"homeTeamName": "Australia", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43969/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_esp\" title=\"Spain\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_esp", 
 		"awayTeamName": "Spain"
 	}, 
 	{
@@ -198,10 +202,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Sao Paulo ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1047/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43960/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_ned\" title=\"Netherlands\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_ned", 
 		"homeTeamName": "Netherlands", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43925/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_chi\" title=\"Chile\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_chi", 
 		"awayTeamName": "Chile"
 	}, 
 	{
@@ -210,10 +214,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Belo Horizonte ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6783/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43926/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_col\" title=\"Colombia\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_col", 
 		"homeTeamName": "Colombia", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43949/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_gre\" title=\"Greece\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_gre", 
 		"awayTeamName": "Greece"
 	}, 
 	{
@@ -222,10 +226,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Recife ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6099/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43854/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_civ\" title=\"Côte d'Ivoire\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_civ", 
 		"homeTeamName": "Côte d'Ivoire", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43819/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_jpn\" title=\"Japan\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_jpn", 
 		"awayTeamName": "Japan"
 	}, 
 	{
@@ -234,10 +238,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Brasilia ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1143/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43926/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_col\" title=\"Colombia\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_col", 
 		"homeTeamName": "Colombia", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43854/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_civ\" title=\"Côte d'Ivoire\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_civ", 
 		"awayTeamName": "Côte d'Ivoire"
 	}, 
 	{
@@ -246,10 +250,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Natal ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=21518/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43819/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_jpn\" title=\"Japan\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_jpn", 
 		"homeTeamName": "Japan", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43949/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_gre\" title=\"Greece\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_gre", 
 		"awayTeamName": "Greece"
 	}, 
 	{
@@ -258,10 +262,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Cuiaba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50053/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43819/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_jpn\" title=\"Japan\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_jpn", 
 		"homeTeamName": "Japan", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43926/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_col\" title=\"Colombia\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_col", 
 		"awayTeamName": "Colombia"
 	}, 
 	{
@@ -270,10 +274,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Fortaleza ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=11693/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43949/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_gre\" title=\"Greece\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_gre", 
 		"homeTeamName": "Greece", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43854/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_civ\" title=\"Côte d'Ivoire\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_civ", 
 		"awayTeamName": "Côte d'Ivoire"
 	}, 
 	{
@@ -282,10 +286,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Fortaleza ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=11693/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43930/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_uru\" title=\"Uruguay\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_uru", 
 		"homeTeamName": "Uruguay", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43901/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_crc\" title=\"Costa Rica\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_crc", 
 		"awayTeamName": "Costa Rica"
 	}, 
 	{
@@ -294,10 +298,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Manaus ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=2037/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43942/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_eng\" title=\"England\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_eng", 
 		"homeTeamName": "England", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43954/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_ita\" title=\"Italy\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_ita", 
 		"awayTeamName": "Italy"
 	}, 
 	{
@@ -306,10 +310,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Sao Paulo ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1047/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43930/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_uru\" title=\"Uruguay\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_uru", 
 		"homeTeamName": "Uruguay", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43942/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_eng\" title=\"England\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_eng", 
 		"awayTeamName": "England"
 	}, 
 	{
@@ -318,10 +322,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Recife ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6099/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43954/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_ita\" title=\"Italy\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_ita", 
 		"homeTeamName": "Italy", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43901/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_crc\" title=\"Costa Rica\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_crc", 
 		"awayTeamName": "Costa Rica"
 	}, 
 	{
@@ -330,10 +334,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Natal ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=21518/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43954/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_ita\" title=\"Italy\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_ita", 
 		"homeTeamName": "Italy", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43930/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_uru\" title=\"Uruguay\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_uru", 
 		"awayTeamName": "Uruguay"
 	}, 
 	{
@@ -342,10 +346,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Belo Horizonte ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6783/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43901/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_crc\" title=\"Costa Rica\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_crc", 
 		"homeTeamName": "Costa Rica", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43942/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_eng\" title=\"England\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_eng", 
 		"awayTeamName": "England"
 	}, 
 	{
@@ -354,10 +358,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Brasilia ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1143/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43971/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_sui\" title=\"Switzerland\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_sui", 
 		"homeTeamName": "Switzerland", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43927/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_ecu\" title=\"Ecuador\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_ecu", 
 		"awayTeamName": "Ecuador"
 	}, 
 	{
@@ -366,10 +370,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Porto Alegre ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1140/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43946/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_fra\" title=\"France\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_fra", 
 		"homeTeamName": "France", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43909/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_hon\" title=\"Honduras\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_hon", 
 		"awayTeamName": "Honduras"
 	}, 
 	{
@@ -378,10 +382,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Salvador", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50071/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43971/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_sui\" title=\"Switzerland\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_sui", 
 		"homeTeamName": "Switzerland", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43946/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_fra\" title=\"France\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_fra", 
 		"awayTeamName": "France"
 	}, 
 	{
@@ -390,10 +394,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Curitiba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=35400/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43909/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_hon\" title=\"Honduras\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_hon", 
 		"homeTeamName": "Honduras", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43927/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_ecu\" title=\"Ecuador\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_ecu", 
 		"awayTeamName": "Ecuador"
 	}, 
 	{
@@ -402,10 +406,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Manaus ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=2037/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43909/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_hon\" title=\"Honduras\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_hon", 
 		"homeTeamName": "Honduras", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43971/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_sui\" title=\"Switzerland\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_sui", 
 		"awayTeamName": "Switzerland"
 	}, 
 	{
@@ -414,10 +418,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Rio De Janeiro ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1141/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43927/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_ecu\" title=\"Ecuador\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_ecu", 
 		"homeTeamName": "Ecuador", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43946/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_fra\" title=\"France\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_fra", 
 		"awayTeamName": "France"
 	}, 
 	{
@@ -426,10 +430,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Rio De Janeiro ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1141/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43922/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_arg\" title=\"Argentina\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_arg", 
 		"homeTeamName": "Argentina", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=44037/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_bih\" title=\"Bosnia-Herzegovina\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_bih", 
 		"awayTeamName": "Bosnia-Herzegovina"
 	}, 
 	{
@@ -438,10 +442,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Curitiba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=35400/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43817/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_irn\" title=\"Iran\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_irn", 
 		"homeTeamName": "Iran", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43876/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_nga\" title=\"Nigeria\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_nga", 
 		"awayTeamName": "Nigeria"
 	}, 
 	{
@@ -450,10 +454,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Belo Horizonte ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6783/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43922/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_arg\" title=\"Argentina\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_arg", 
 		"homeTeamName": "Argentina", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43817/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_irn\" title=\"Iran\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_irn", 
 		"awayTeamName": "Iran"
 	}, 
 	{
@@ -462,10 +466,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Cuiaba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50053/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43876/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_nga\" title=\"Nigeria\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_nga", 
 		"homeTeamName": "Nigeria", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=44037/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_bih\" title=\"Bosnia-Herzegovina\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_bih", 
 		"awayTeamName": "Bosnia-Herzegovina"
 	}, 
 	{
@@ -474,10 +478,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Porto Alegre ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1140/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43876/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_nga\" title=\"Nigeria\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_nga", 
 		"homeTeamName": "Nigeria", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43922/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_arg\" title=\"Argentina\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_arg", 
 		"awayTeamName": "Argentina"
 	}, 
 	{
@@ -486,10 +490,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Salvador", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50071/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=44037/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_bih\" title=\"Bosnia-Herzegovina\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_bih", 
 		"homeTeamName": "Bosnia-Herzegovina", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43817/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_irn\" title=\"Iran\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_irn", 
 		"awayTeamName": "Iran"
 	}, 
 	{
@@ -498,10 +502,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Salvador", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50071/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43948/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_ger\" title=\"Germany\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_ger", 
 		"homeTeamName": "Germany", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43963/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_por\" title=\"Portugal\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_por", 
 		"awayTeamName": "Portugal"
 	}, 
 	{
@@ -510,10 +514,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Natal ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=21518/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43860/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_gha\" title=\"Ghana\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_gha", 
 		"homeTeamName": "Ghana", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43921/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_usa\" title=\"USA\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_usa", 
 		"awayTeamName": "USA"
 	}, 
 	{
@@ -522,10 +526,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Fortaleza ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=11693/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43948/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_ger\" title=\"Germany\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_ger", 
 		"homeTeamName": "Germany", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43860/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_gha\" title=\"Ghana\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_gha", 
 		"awayTeamName": "Ghana"
 	}, 
 	{
@@ -534,10 +538,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Manaus ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=2037/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43921/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_usa\" title=\"USA\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_usa", 
 		"homeTeamName": "USA", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43963/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_por\" title=\"Portugal\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_por", 
 		"awayTeamName": "Portugal"
 	}, 
 	{
@@ -546,10 +550,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Recife ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6099/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43921/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_usa\" title=\"USA\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_usa", 
 		"homeTeamName": "USA", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43948/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_ger\" title=\"Germany\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_ger", 
 		"awayTeamName": "Germany"
 	}, 
 	{
@@ -558,10 +562,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Brasilia ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1143/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43963/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_por\" title=\"Portugal\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_por", 
 		"homeTeamName": "Portugal", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43860/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_gha\" title=\"Ghana\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_gha", 
 		"awayTeamName": "Ghana"
 	}, 
 	{
@@ -570,10 +574,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Belo Horizonte ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6783/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43935/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_bel\" title=\"Belgium\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_bel", 
 		"homeTeamName": "Belgium", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43843/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_alg\" title=\"Algeria\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_alg", 
 		"awayTeamName": "Algeria"
 	}, 
 	{
@@ -582,10 +586,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Cuiaba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50053/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43965/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_rus\" title=\"Russia\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_rus", 
 		"homeTeamName": "Russia", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43822/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_kor\" title=\"Korea Republic\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_kor", 
 		"awayTeamName": "Korea Republic"
 	}, 
 	{
@@ -594,10 +598,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Rio De Janeiro ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1141/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43935/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_bel\" title=\"Belgium\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_bel", 
 		"homeTeamName": "Belgium", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43965/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_rus\" title=\"Russia\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_rus", 
 		"awayTeamName": "Russia"
 	}, 
 	{
@@ -606,10 +610,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Porto Alegre ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1140/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43822/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_kor\" title=\"Korea Republic\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_kor", 
 		"homeTeamName": "Korea Republic", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43843/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_alg\" title=\"Algeria\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_alg", 
 		"awayTeamName": "Algeria"
 	}, 
 	{
@@ -618,10 +622,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Sao Paulo ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1047/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43822/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_kor\" title=\"Korea Republic\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_kor", 
 		"homeTeamName": "Korea Republic", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43935/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_bel\" title=\"Belgium\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_bel", 
 		"awayTeamName": "Belgium"
 	}, 
 	{
@@ -630,10 +634,10 @@ app.controller('GroupCtrl', function($scope) {
 		"venue": "Curitiba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=35400/index.html", 
 		"homeTeamLink": "http://www.fifa.com/worldcup/teams/team=43843/index.html", 
-		"homeTeamIcon": "<span class=\"flagsp flagsp_alg\" title=\"Algeria\"> </span>", 
+		"homeTeamIcon": "flagsp flagsp_alg", 
 		"homeTeamName": "Algeria", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43965/index.html", 
-		"awayTeamIcon": "<span class=\"flagsp flagsp_rus\" title=\"Russia\"> </span>", 
+		"awayTeamIcon": "flagsp flagsp_rus", 
 		"awayTeamName": "Russia"
 	}
 ]

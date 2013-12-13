@@ -1,7 +1,26 @@
-<div>
-	<h1>hello</h1>
-	<ul>
-		<li ng-repeat="g in group"> {{g.homeTeamIcon}} vs {{g.awayTeamName}}</li>
-	</ul>
+<div>    
+    <h1>Predict the World Cup</h1>
 
-</div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Home</th>
+                <th>Score</th>
+                <th>Away</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="g in group">
+            <td>{{g.homeTeamName}} <span class="{{g.homeTeamIcon}}" title="{{g.homeTeamName}}"> </span> </td>
+
+                <th></th>
+            <td>{{g.awayTeamName}} 
+                <span class="{{g.awayTeamIcon}}" title="{{g.awayTeamName}}"> </span> 
+            </td>
+                <th></th>
+            </tr>
+            </tbody>
+    </table>
+
+</div>         
