@@ -1,12 +1,20 @@
 
-var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'AppsDirective']);
+var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'AppsDirective', 'mongolabResourceHttp', 'ngStorage']);
 
 app.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/view1', {template: '<div><button ng-click="sayHello()">ENTER</button>This is {{templateName}}</div>', controller: 'MyCtrl1'});
 		$routeProvider.when('/view2', {template: '<div></div>.', controller: 'MyCtrl2'});
 		$routeProvider.when('/group', {templateUrl: 'group.html', controller: 'GroupCtrl'});
+		$routeProvider.when('/sixteen', {templateUrl: 'sixteen.html', controller: 'SixteenCtrl'});
+		$routeProvider.when('/quarter', {templateUrl: 'quarter.html', controller: 'QuarterCtrl'});
+		$routeProvider.when('/semi', {templateUrl: 'semi.html', controller: 'SemiCtrl'});
+		$routeProvider.when('/third', {templateUrl: 'third.html', controller: 'ThirdCtrl'});
+		$routeProvider.when('/final', {templateUrl: 'final.html', controller: 'FinalCtrl'});
 		$routeProvider.otherwise({redirectTo: '/view1'});
-	}]);
+	}]).constant('MONGOLAB_CONFIG', {API_KEY: '50f36e05e4b0b9deb24829a0', DB_NAME: 'weolopez'})
+        .factory('PTWC', function($mongolabResourceHttp) {
+            return $mongolabResourceHttp('PTWC');
+        });
 
 app.controller('myController', function($scope, $timeout, $location) {
 	$scope.sayHello = function() {
@@ -31,25 +39,45 @@ app.controller('myController', function($scope, $timeout, $location) {
 		},
 		{
 			"name": "Group",
-			"icon": "icon-heart",
-			"type": "marker",
+			"icon": "icon-sitemap",
+			"type": "nav",
 			"appType": "app",
-			"path": "Crowd"
+			"path": "group"
+		},
+		{
+			"name": "Sixteen",
+			"icon": "icon-group",
+			"type": "nav",
+			"appType": "app",
+			"path": "sixteen"
 		},
 		{
 			"name": "Quarters",
-			"icon": "icon-heart",
-			"type": "background",
+			"icon": "icon-code-fork",
+			"type": "nav",
+			"appType": "app",
+			"path": "sixteen"
 		},
 		{
 			"name": "Semi",
-			"icon": "icon-heart",
-			"type": "background"
+			"icon": "icon-male",
+			"type": "nav",
+			"appType": "app",
+			"path": "sixteen"
+		},
+		{
+			"name": "Third",
+			"icon": "icon-flag",
+			"type": "nav",
+			"appType": "app",
+			"path": "third"
 		},
 		{
 			"name": "Final",
-			"icon": "icon-heart",
-			"type": "background"
+			"icon": "icon-trophy",
+			"type": "nav",
+			"appType": "app",
+			"path": "sixteen"
 		}
 	]
 });
@@ -58,7 +86,18 @@ app.controller('MyCtrl1', function($scope) {
 });
 app.controller('MyCtrl2', function($scope) {
 });
-app.controller('GroupCtrl', function($scope) {
+app.controller('SixteenCtrl', function($scope, $localStorage) {
+});
+app.controller('QuarterCtrl', function($scope, $localStorage) {
+});
+app.controller('SemiCtrl', function($scope, $localStorage) {
+});
+app.controller('ThirdCtrl', function($scope, $localStorage) {
+});
+app.controller('FinalCtrl', function($scope, $localStorage) {
+});
+app.controller('GroupCtrl', function($scope, $localStorage) {
+        $scope.selectedGroup = 'A';
         $scope.filterClass = function(icon) {
             return icon.substr(icon.indexOf('class')+3,icon.indexOf('title')-3);
         };
@@ -66,6 +105,7 @@ app.controller('GroupCtrl', function($scope) {
 	$scope.group = [
 	{
 		"no": "1", 
+		"group": "A", 
 		"time": "12/06 17:00", 
 		"venue": "Sao Paulo ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1047/index.html", 
@@ -78,6 +118,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "2", 
+		"group": "A", 
 		"time": "13/06 13:00", 
 		"venue": "Natal ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=21518/index.html", 
@@ -86,10 +127,11 @@ app.controller('GroupCtrl', function($scope) {
 		"homeTeamName": "Mexico", 
 		"awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43849/index.html", 
 		"awayTeamIcon": "flagsp flagsp_cmr", 
-		"awayTeamName": "Cameroon"
+		"awayTeamName": "Cameroon "
 	}, 
 	{
 		"no": "17", 
+		"group": "A", 
 		"time": "17/06 16:00", 
 		"venue": "Fortaleza ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=11693/index.html", 
@@ -102,6 +144,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "18", 
+		"group": "A", 
 		"time": "18/06 18:00", 
 		"venue": "Manaus ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=2037/index.html", 
@@ -114,6 +157,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "33", 
+		"group": "A", 
 		"time": "23/06 17:00", 
 		"venue": "Brasilia ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1143/index.html", 
@@ -126,6 +170,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "34", 
+		"group": "A", 
 		"time": "23/06 17:00", 
 		"venue": "Recife ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6099/index.html", 
@@ -138,6 +183,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "3", 
+		"group": "B", 
 		"time": "13/06 16:00", 
 		"venue": "Salvador", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50071/index.html", 
@@ -150,6 +196,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "4", 
+		"group": "B", 
 		"time": "13/06 18:00", 
 		"venue": "Cuiaba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50053/index.html", 
@@ -162,6 +209,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "19", 
+		"group": "B", 
 		"time": "18/06 16:00", 
 		"venue": "Rio De Janeiro ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1141/index.html", 
@@ -174,6 +222,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "20", 
+		"group": "B", 
 		"time": "18/06 13:00", 
 		"venue": "Porto Alegre ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1140/index.html", 
@@ -186,6 +235,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "35", 
+		"group": "B", 
 		"time": "23/06 13:00", 
 		"venue": "Curitiba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=35400/index.html", 
@@ -198,6 +248,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "36", 
+		"group": "B", 
 		"time": "23/06 13:00", 
 		"venue": "Sao Paulo ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1047/index.html", 
@@ -210,6 +261,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "5", 
+		"group": "C", 
 		"time": "14/06 13:00", 
 		"venue": "Belo Horizonte ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6783/index.html", 
@@ -222,6 +274,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "6", 
+		"group": "C", 
 		"time": "14/06 22:00", 
 		"venue": "Recife ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6099/index.html", 
@@ -234,6 +287,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "21", 
+		"group": "C", 
 		"time": "19/06 13:00", 
 		"venue": "Brasilia ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1143/index.html", 
@@ -246,6 +300,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "22", 
+		"group": "C", 
 		"time": "19/06 19:00", 
 		"venue": "Natal ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=21518/index.html", 
@@ -258,6 +313,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "37", 
+		"group": "C", 
 		"time": "24/06 16:00", 
 		"venue": "Cuiaba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50053/index.html", 
@@ -270,6 +326,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "38", 
+		"group": "C", 
 		"time": "24/06 17:00", 
 		"venue": "Fortaleza ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=11693/index.html", 
@@ -282,6 +339,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "7", 
+		"group": "D", 
 		"time": "14/06 16:00", 
 		"venue": "Fortaleza ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=11693/index.html", 
@@ -294,6 +352,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "8", 
+		"group": "D", 
 		"time": "14/06 18:00", 
 		"venue": "Manaus ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=2037/index.html", 
@@ -306,6 +365,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "23", 
+		"group": "D", 
 		"time": "19/06 16:00", 
 		"venue": "Sao Paulo ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1047/index.html", 
@@ -318,6 +378,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "24", 
+		"group": "D", 
 		"time": "20/06 13:00", 
 		"venue": "Recife ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6099/index.html", 
@@ -330,6 +391,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "39", 
+		"group": "D", 
 		"time": "24/06 13:00", 
 		"venue": "Natal ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=21518/index.html", 
@@ -342,6 +404,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "40", 
+		"group": "D", 
 		"time": "24/06 13:00", 
 		"venue": "Belo Horizonte ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6783/index.html", 
@@ -354,6 +417,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "9", 
+		"group": "E", 
 		"time": "15/06 13:00", 
 		"venue": "Brasilia ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1143/index.html", 
@@ -366,6 +430,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "10", 
+		"group": "E", 
 		"time": "15/06 16:00", 
 		"venue": "Porto Alegre ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1140/index.html", 
@@ -378,6 +443,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "25", 
+		"group": "E", 
 		"time": "20/06 16:00", 
 		"venue": "Salvador", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50071/index.html", 
@@ -390,6 +456,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "26", 
+		"group": "E", 
 		"time": "20/06 19:00", 
 		"venue": "Curitiba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=35400/index.html", 
@@ -402,6 +469,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "41", 
+		"group": "E", 
 		"time": "25/06 16:00", 
 		"venue": "Manaus ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=2037/index.html", 
@@ -414,6 +482,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "42", 
+		"group": "E", 
 		"time": "25/06 17:00", 
 		"venue": "Rio De Janeiro ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1141/index.html", 
@@ -426,6 +495,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "11", 
+		"group": "F", 
 		"time": "15/06 19:00", 
 		"venue": "Rio De Janeiro ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1141/index.html", 
@@ -438,6 +508,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "12", 
+		"group": "F", 
 		"time": "16/06 16:00", 
 		"venue": "Curitiba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=35400/index.html", 
@@ -450,6 +521,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "27", 
+		"group": "F", 
 		"time": "21/06 13:00", 
 		"venue": "Belo Horizonte ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6783/index.html", 
@@ -462,6 +534,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "28", 
+		"group": "F", 
 		"time": "21/06 18:00", 
 		"venue": "Cuiaba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50053/index.html", 
@@ -474,6 +547,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "43", 
+		"group": "F", 
 		"time": "25/06 13:00", 
 		"venue": "Porto Alegre ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1140/index.html", 
@@ -486,6 +560,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "44", 
+		"group": "F", 
 		"time": "25/06 13:00", 
 		"venue": "Salvador", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50071/index.html", 
@@ -498,6 +573,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "13", 
+		"group": "G", 
 		"time": "16/06 13:00", 
 		"venue": "Salvador", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50071/index.html", 
@@ -510,6 +586,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "14", 
+		"group": "G", 
 		"time": "16/06 19:00", 
 		"venue": "Natal ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=21518/index.html", 
@@ -522,6 +599,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "29", 
+		"group": "G", 
 		"time": "21/06 16:00", 
 		"venue": "Fortaleza ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=11693/index.html", 
@@ -534,6 +612,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "30", 
+		"group": "G", 
 		"time": "22/06 18:00", 
 		"venue": "Manaus ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=2037/index.html", 
@@ -546,6 +625,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "45", 
+		"group": "G", 
 		"time": "26/06 13:00", 
 		"venue": "Recife ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6099/index.html", 
@@ -558,6 +638,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "46", 
+		"group": "G", 
 		"time": "26/06 13:00", 
 		"venue": "Brasilia ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1143/index.html", 
@@ -570,6 +651,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "15", 
+		"group": "H", 
 		"time": "17/06 13:00", 
 		"venue": "Belo Horizonte ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=6783/index.html", 
@@ -582,6 +664,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "16", 
+		"group": "H", 
 		"time": "17/06 18:00", 
 		"venue": "Cuiaba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=50053/index.html", 
@@ -594,6 +677,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "31", 
+		"group": "H", 
 		"time": "22/06 13:00", 
 		"venue": "Rio De Janeiro ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1141/index.html", 
@@ -606,6 +690,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "32", 
+		"group": "H", 
 		"time": "22/06 16:00", 
 		"venue": "Porto Alegre ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1140/index.html", 
@@ -618,6 +703,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "47", 
+		"group": "H", 
 		"time": "26/06 17:00", 
 		"venue": "Sao Paulo ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=1047/index.html", 
@@ -630,6 +716,7 @@ app.controller('GroupCtrl', function($scope) {
 	}, 
 	{
 		"no": "48", 
+		"group": "H", 
 		"time": "26/06 17:00", 
 		"venue": "Curitiba ", 
 		"venue_link": "http://www.fifa.com/worldcup/destination/cities/city=35400/index.html", 

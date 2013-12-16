@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : mlopez
 */
 
-html, body {width:100%; height:100%; background:white;color:black;overflow: hidden;padding: 0;}
+html, body {width:100%; height:100%; background:white;color:black;overflow-x: hidden;overflow-y: auto;padding: 0;}
 
 ng-view {
 	display: block;
@@ -17,48 +17,84 @@ ng-view {
 	height: 100%;
 	position: absolute;
 	top: 0px;	
-	overflow: hidden;
+	overflow-x: hidden;overflow-y: auto;
 }
 
-.ng-enter {
-	-webkit-animation: enter 1s cubic-bezier(.17,.67,.83,.67);
-	animation: enter 1s cubic-bezier(.17,.67,.83,.67);
+.my-slide-container {
+  position:relative;
+}
+.my-slide-animation.ng-enter, .my-slide-animation.ng-leave {
+  -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:600px;
 }
 
-.ng-leave {
-	-webkit-animation: enter 1s ease-out reverse;
-	animation: enter 1s ease-out reverse;
+.my-slide-animation.ng-enter {
+  z-index:100;
+  top:600px;
+  opacity:0;
+}
+.my-slide-animation.ng-enter.ng-enter-active {
+  top:0;
+  opacity:1;
 }
 
-@-webkit-keyframes enter {
-	0% {
-		background: #f80;
-		top: 100%;
-	}
-	70% {
-		background: #f08;
-	}
-	100% {
-		background: #8f8;
-		top: 20%;
-	}
+.my-slide-animation.ng-leave {
+  z-index:101;
+  top:0;
+  opacity:1;
+}
+.my-slide-animation.ng-leave.ng-leave-active {
+  top:-600px;
+  opacity:0;
 }
 
-@keyframes enter {
-	0% {
-		background: #f80;
-		top: 100%;
-	}
-	70% {
-		background: #f08;
-	}
-	100% {
-		background: #8f8;
-		top: 20%;
-	}
+
+.my-repeat-animation.ng-enter, 
+.my-repeat-animation.ng-leave, 
+.my-repeat-animation.ng-move {
+  -webkit-transition: 0.9s linear all;
+  transition: 0.9s linear all;
+  position:relative;
 }
 
-#app {position:relative; width:100%; height:100%;overflow: hidden;}
+.my-repeat-animation.ng-enter {
+  left:-10px;
+  opacity:0;
+}
+.my-repeat-animation.ng-enter.ng-enter-active {
+  left:0;
+  opacity:1;
+}
+
+.my-repeat-animation.ng-leave {
+ // left:0;
+  opacity:1;
+  visibility: hidden;
+}
+.my-repeat-animation.ng-leave.ng-leave-active {
+  //left:-10px;
+  opacity:0;
+  visibility: hidden;
+}
+
+.my-repeat-animation.ng-move {
+  opacity:0.5;
+}
+.my-repeat-animation.ng-move.ng-move-active {
+  opacity:1;
+}
+
+
+.sgcss {
+    background-color: #1E90FF;
+}
+#app {position:relative; width:100%; height:100%;overflow-x: hidden;overflow-y: auto;}
 #app #dragMarkerMap {z-index:1; position:absolute; top:0; left:0;}
 
 #il-wrap{
@@ -91,6 +127,7 @@ ng-view {
 
 button {
 	font-size: 100%;
+        margin: 1px;
 }
 
 input:focus, textarea:focus {
@@ -109,8 +146,34 @@ input {
 	font-size: 100%;
 }
 
+#groupContainer {
+    width: 100%;
+    font-size: 100%;
+}
+#groupContainer h1 {
+    text-align: left;
+}
+#groupContainer table {
+    margin: 0 auto;
+}
+#groupTable td {
+    padding: 5px;
+}
+#groupTable a {
+    float: left;
+    padding-right: 15px;
+}
+#groupTable span {
+   float: right;
+}
 @media (orientation:portrait){
-
+    button {
+	font-size: 100%;
+        margin: 1px;
+}
+#groupContainer h1 {
+    text-align: center;
+}
 	#app .add-new-marker { bottom:95px; }
 	
 	#il-wrap{
@@ -122,6 +185,23 @@ input {
 	#icon-list ul li {float:left;}
 
 	#comment-panel {width:100%; height:60%; min-height:60%; top: auto; bottom: 0; right: auto; overflow-x:scroll;}
+}
+
+@media only screen and (max-width: 480px) {
+#groupContainer h1 {
+        font-size: 225%;
+    }
+    #groupContainer h2 {
+        font-size: 200%;
+    }
+    #groupTable a {
+        font-size: 120%;
+    }
+}
+@media only screen and (min-width: 768px) {
+    body {
+        zoom:2;
+    }
 }
 
 .flagsp {display:inline-block;vertical-align:middle;width:19px;height:13px;overflow:hidden;background:transparent url(http://img.fifa.com/imgml/flags/flagsp.png?v=4) no-repeat scroll; border: 1px solid #CCC;}
