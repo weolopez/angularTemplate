@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : mlopez
 */
 
-html, body {width:100%; height:100%; background:white;color:black;overflow-x: hidden;overflow-y: auto;padding: 0;}
+html, body {width:100%; height:100%; background:white;color:black;overflow: hidden;padding: 0;}
 
 ng-view {
 	display: block;
@@ -17,7 +17,7 @@ ng-view {
 	height: 100%;
 	position: absolute;
 	top: 0px;	
-	overflow-x: hidden;overflow-y: auto;
+	overflow-x: hidden;//overflow-y: auto;
 }
 
 .my-slide-container {
@@ -167,6 +167,9 @@ input {
    float: right;
 }
 @media (orientation:portrait){
+    body {
+        overflow: hidden;
+    }
     button {
 	font-size: 100%;
         margin: 1px;
@@ -201,6 +204,7 @@ input {
 @media only screen and (min-width: 768px) {
     body {
         zoom:2;
+        overflow: hidden;
     }
 }
 
@@ -234,7 +238,7 @@ input {
 .flagsp_blz {background-position:-114px -26px;}
 .flagsp_bol {background-position:-133px -26px;}
 .flagsp_bot {background-position:-152px -26px;}
-.flagsp_bra {background-position:-171px -26px;}
+.flagsp_bra {background-position:-171px -26px;text-align: right;float: r;}
 .flagsp_brb {background-position:-0px -39px;}
 .flagsp_bru {background-position:-19px -39px;}
 .flagsp_bul {background-position:-38px -39px;}
