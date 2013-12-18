@@ -107,41 +107,49 @@ app.controller('LoginCtrl', function($scope, $localStorage) {
     });
 });
 app.factory('SixteenService', function() {
-            
-            return {
-                getSixteen: function(groups){
-                    var g = {};
+            function groupScores(groups){
+                var g = {};
                     angular.forEach(groups, function(value, key){
-                        if ( g[value.group] === undefined ) {
-                            g[value.group] = {};
+                var group = value.group;
+                var hteam = value.homeTeamName;
+                var ateam = value.awayTeamName;
+                        if ( g[group] === undefined ) {
+                            g[group] = {};
                             var team = {points:0,goals:0};
-                            g[value.group][value.homeTeamName] = team;
-                            g[value.group][value.awayTeamName] = team;
-                            g[value.group][groups[key+1].homeTeamName] = team;
-                            g[value.group][groups[key+1].awayTeamName] = team;
+                            g[group][hteam] = team;
+                            g[group][ateam] = team;
+                            g[group][groups[key+1].homeTeamName] = team;
+                            g[group][groups[key+1].awayTeamName] = team;
                         }; 
-                        g[value.group][value.homeTeamName].goals += value.homeScore;
-                        g[value.group][value.awayTeamName].goals += value.awayScore;
+console.log(hteam+ateam);
+                        g[group][ateam].goals = parseInt(g[group][hteam].goals)+parseInt(value.awayScore);
+                        g[group][hteam].goals = parseInt(g[group][ateam].goals)+parseInt(value.homeScore);
                         
                         if ( value.homeScore > value.awayScore ) {
-                            g[value.group][value.homeTeamName].points+=3;
+                            g[group][hteam].points= parseInt(g[group][hteam].points)+3;
                         } else if ( value.homeScore < value.awayScore ) {
-                            g[value.group][value.awayTeamName].points+=3;
-                        } else if ( value.homeScore = value.awayScore ) {
-                            g[value.group][value.homeTeamName].points+=1;
-                            g[value.group][value.awayTeamName].points+=1;
+                            g[group][ateam].points=parseInt(g[group][ateam].points)+3;
+                        } else if ( value.homeScore === value.awayScore ) {
+                            g[group][hteam].points=parseInt(g[group][hteam].points)+1;
+                            g[group][ateam].points=parseInt(g[group][ateam].points)+1;
                         }
                     }, g);
+                    return g;
+            }
+            return {
+                getSixteen: function(groups){
+                    var score = groupScores(groups);
                     var s = {};
-                    angular.forEach(g, function(value, key){
-                        s[value.group] = value;
+                    angular.forEach(score, function(value, key){
+                        s[group] = value;
                     }, s);
                 }
-            }
+            };
         });
 app.controller('SixteenCtrl', function($scope, $localStorage, SixteenService) { 
     if ($localStorage.ptwc.group !== undefined)
         $scope.group=angular.copy($localStorage.ptwc.group);
+    $scope.sixteen = SixteenService.getSixteen($scope.group);
 });
 app.controller('QuarterCtrl', function($scope, $localStorage) {
 });
@@ -192,7 +200,7 @@ app.controller('GroupCtrl', function($scope, $localStorage) {
                 "homeTeamName": "Mexico",
                 "awayTeamLink": "http://www.fifa.com/worldcup/teams/team=43849/index.html",
                 "awayTeamIcon": "flagsp flagsp_cmr",
-                "awayTeamName": "Cameroon "
+                "awayTeamName": "Cameroon"
             },
             {
                 "no": "17",
