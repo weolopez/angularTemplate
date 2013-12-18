@@ -5,13 +5,8 @@
         <thead>
         <tr>
             <th colspan="5">
-        <h2>Group {{selectedGroup}}</h2>
+        <h2> Round of Sixteen</h2>
         </th>
-        </tr>
-        <tr>
-            <th colspan="5">
-                <button ng-repeat="g in group| unique:'group'" ng-click="$parent.selectedGroup = g.group" ng-class="{ sgcss: $parent.selectedGroup == g.group}">{{g.group}}</button>
-            </th>
         </tr>
         <tr>
             <th>Home</th>
@@ -22,7 +17,7 @@
         </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="g in group| filter: {group:selectedGroup} " class="my-repeat-animation">
+            <tr ng-repeat="g in sixteen" class="my-repeat-animation">
                 <td><a href="{{g.homeTeamLink}}">{{g.homeTeamName}}</a> <span class="{{g.homeTeamIcon}}" title="{{g.homeTeamName}}"> </span> </td>
                 <th><input type="text" style="width:17px" ng-model="g.homeScore"></th>
                 <th>-</th>
