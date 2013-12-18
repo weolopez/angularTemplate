@@ -115,14 +115,13 @@ app.factory('SixteenService', function() {
                 var ateam = value.awayTeamName;
                         if ( g[group] === undefined ) {
                             g[group] = {};
-                            var team = {points:0,goals:0};
+                            var team = {points:0,goals:0,place:0};
                             g[group][hteam] = team;
                             g[group][ateam] = team;
                             g[group][groups[key+1].homeTeamName] = team;
                             g[group][groups[key+1].awayTeamName] = team;
                         }; 
-console.log(hteam+ateam);
-                        g[group][ateam].goals = parseInt(g[group][hteam].goals)+parseInt(value.awayScore);
+                        g[group][ateam].goals = parseInt(g[group][hteam].goals) + +value.awayScore;
                         g[group][hteam].goals = parseInt(g[group][ateam].goals)+parseInt(value.homeScore);
                         
                         if ( value.homeScore > value.awayScore ) {
@@ -135,13 +134,20 @@ console.log(hteam+ateam);
                         }
                     }, g);
                     return g;
-            }
+            };
+            
+            function addPlaces(group,teams){ 
+                         return +group[teams[0]].place + +group[teams[1]].place + +group[teams[2]].place + +group[teams[3]].place };
             return {
                 getSixteen: function(groups){
                     var score = groupScores(groups);
                     var s = {};
-                    angular.forEach(score, function(value, key){
-                        s[group] = value;
+                    angular.forEach(score, function(group, key){
+                       var teams = Object.keys(group);
+                   //    while ( addPlaces(group, teams) < 10 ) {
+console.log(addPlaces(group, teams));
+
+                  //     }
                     }, s);
                 }
             };

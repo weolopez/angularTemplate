@@ -24,13 +24,14 @@
         <tbody>
             <tr ng-repeat="g in group| filter: {group:selectedGroup} " class="my-repeat-animation">
                 <td><a href="{{g.homeTeamLink}}">{{g.homeTeamName}}</a> <span class="{{g.homeTeamIcon}}" title="{{g.homeTeamName}}"> </span> </td>
-                <th><input type="text" style="width:17px" ng-model="g.homeScore"></th>
+                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.homeScore"  min="0" max="9"></div></th>
                 <th>-</th>
-                <th><input type="text" style="width:17px" ng-model="g.awayScore"></th>
+                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.awayScore"  min="0" max="9"></div></th>
                 <td><a href="{{g.awayTeamLink}}">{{g.awayTeamName}} </a>
                     <span class="{{g.awayTeamIcon}}" title="{{g.awayTeamName}}"> </span> 
                 </td>
             </tr>
         </tbody>
     </table>
+    
 </div>         
