@@ -185,6 +185,15 @@ input {
     overflow:auto;
     border: none;
 }
+.numscroll.home {
+    background-color: lightgreen;
+}
+.numscroll.away {
+    background-color: pink;
+}
+.numscroll.tie {
+    background-color: yellow;
+}
 @media (orientation:portrait){
     button {
 	font-size: 100%;

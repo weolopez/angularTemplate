@@ -107,55 +107,59 @@ app.controller('LoginCtrl', function($scope, $localStorage) {
     });
 });
 app.factory('SixteenService', function() {
-            function groupScores(groups){
-                var g = {};
-                    angular.forEach(groups, function(value, key){
-                var group = value.group;
-                var hteam = value.homeTeamName;
-                var ateam = value.awayTeamName;
-                        if ( g[group] === undefined ) {
-                            g[group] = {};
-                            var team = {points:0,goals:0,place:0};
-                            g[group][hteam] = team;
-                            g[group][ateam] = team;
-                            g[group][groups[key+1].homeTeamName] = team;
-                            g[group][groups[key+1].awayTeamName] = team;
-                        }; 
-                        g[group][ateam].goals = parseInt(g[group][hteam].goals) + +value.awayScore;
-                        g[group][hteam].goals = parseInt(g[group][ateam].goals)+parseInt(value.homeScore);
-                        
-                        if ( value.homeScore > value.awayScore ) {
-                            g[group][hteam].points= parseInt(g[group][hteam].points)+3;
-                        } else if ( value.homeScore < value.awayScore ) {
-                            g[group][ateam].points=parseInt(g[group][ateam].points)+3;
-                        } else if ( value.homeScore === value.awayScore ) {
-                            g[group][hteam].points=parseInt(g[group][hteam].points)+1;
-                            g[group][ateam].points=parseInt(g[group][ateam].points)+1;
-                        }
-                    }, g);
-                    return g;
-            };
-            
-            function addPlaces(group,teams){ 
-                         return +group[teams[0]].place + +group[teams[1]].place + +group[teams[2]].place + +group[teams[3]].place };
-            return {
-                getSixteen: function(groups){
-                    var score = groupScores(groups);
-                    var s = {};
-                    angular.forEach(score, function(group, key){
-                       var teams = Object.keys(group);
-                   //    while ( addPlaces(group, teams) < 10 ) {
-console.log(addPlaces(group, teams));
+    function groupScores(groups) {
+        var g = {};
+        angular.forEach(groups, function(value, key) {
+            var group = value.group;
+            var hteam = value.homeTeamName;
+            var ateam = value.awayTeamName;
+            if (g[group] === undefined) {
+                g[group] = {};
+                var team = {points: 0, goals: 0, place: 0};
+                g[group][hteam] = team;
+                g[group][ateam] = team;
+                g[group][groups[key + 1].homeTeamName] = team;
+                g[group][groups[key + 1].awayTeamName] = team;
+            }
+            ;
+            g[group][ateam].goals = parseInt(g[group][hteam].goals) + +value.awayScore;
+            g[group][hteam].goals = parseInt(g[group][ateam].goals) + parseInt(value.homeScore);
 
-                  //     }
-                    }, s);
-                }
-            };
-        });
-app.controller('SixteenCtrl', function($scope, $localStorage, SixteenService) { 
-    if ($localStorage.ptwc.group !== undefined)
-        $scope.group=angular.copy($localStorage.ptwc.group);
-    $scope.sixteen = SixteenService.getSixteen($scope.group);
+            if (value.homeScore > value.awayScore) {
+                g[group][hteam].points = parseInt(g[group][hteam].points) + 3;
+            } else if (value.homeScore < value.awayScore) {
+                g[group][ateam].points = parseInt(g[group][ateam].points) + 3;
+            } else if (value.homeScore === value.awayScore) {
+                g[group][hteam].points = parseInt(g[group][hteam].points) + 1;
+                g[group][ateam].points = parseInt(g[group][ateam].points) + 1;
+            }
+        }, g);
+        return g;
+    }
+    ;
+
+    function addPlaces(group, teams) {
+        return +group[teams[0]].place + +group[teams[1]].place + +group[teams[2]].place + +group[teams[3]].place
+    }
+    ;
+    return {
+        getSixteen: function(groups) {
+            var score = groupScores(groups);
+            var s = {};
+            angular.forEach(score, function(group, key) {
+                var teams = Object.keys(group);
+                //    while ( addPlaces(group, teams) < 10 ) {
+                console.log(addPlaces(group, teams));
+
+                //     }
+            }, s);
+        }
+    };
+});
+app.controller('SixteenCtrl', function($scope, $localStorage, SixteenService) {
+    if ($localStorage.ptwc.groupGames !== undefined)
+        $scope.games = angular.copy($localStorage.ptwc.groupGames);
+    $scope.sixteen = SixteenService.getSixteen($scope.games);
 });
 app.controller('QuarterCtrl', function($scope, $localStorage) {
 });
@@ -166,22 +170,81 @@ app.controller('ThirdCtrl', function($scope, $localStorage) {
 app.controller('FinalCtrl', function($scope, $localStorage) {
 });
 app.controller('GroupCtrl', function($scope, $localStorage) {
-    $scope.selectedGroup = 'A';
+    $scope.selectedGame = 'A';
+
+    if ($localStorage.ptwc.groups !== undefined)
+        $scope.groups = angular.copy($localStorage.ptwc.groups);
+    else
+        $scope.groups = {};
 
     $scope.filterClass = function(icon) {
         return icon.substr(icon.indexOf('class') + 3, icon.indexOf('title') - 3);
     };
 
     $scope.$watch(function(newValue, oldValue) {
-        if (newValue.group === undefined || $localStorage.ptwc === undefined)
+        if (newValue.games === undefined || $localStorage.ptwc === undefined)
             return;
-        $localStorage.ptwc.group=angular.copy(newValue.group);
+
+        $localStorage.ptwc.groupGames = angular.copy(newValue.games);
     });
 
-    if ($localStorage.ptwc.group !== undefined)
-        $scope.group=angular.copy($localStorage.ptwc.group);
+    $scope.scoreChange = function(index) {
+        if ($scope.games[index].homeScore === undefined || $scope.games[index].awayScore === undefined)
+            return;
+        var game = $scope.games[index];
+
+        var group = getGroup($scope.groups, game.group, index);
+
+        if (+game.homeScore > +game.awayScore)
+            $scope.games[index].winner = 'home';
+        else if (+game.homeScore < +game.awayScore)
+            $scope.games[index].winner = 'away';
+        else if (game.homeScore === game.awayScore)
+            $scope.games[index].winner = 'tie';
+
+        group.games[index] = $scope.games[index];
+        group = setPoints(group);  //TODO test 
+        angular.extend($scope.groups[game.group], group);
+    };
+
+    function setPoints(group) {
+        angular.forEach(group.games, function(game, key) {
+            if ( game.winner === 'home' ) group[game.homeTeamName] 
+        }, group);
+        return group;
+    }
+    function getGroup(groups, groupName, index) {
+        if (groups[groupName] === undefined) {
+            var group = {};
+            group[$scope.games[index].homeTeamName] = getTeam($scope.games[index], 'home');
+            group[$scope.games[index].awayTeamName] = getTeam($scope.games[index], 'away');
+            group[$scope.games[index+1].homeTeamName] = getTeam($scope.games[index + 1], 'home');
+            group[$scope.games[index+1].awayTeamName] = getTeam($scope.games[index + 1], 'away');
+            group.games = [];
+            $scope.groups[$scope.games[index].group] = group;
+        } else
+            var group = $scope.groups[$scope.games[index].group];
+        return group;
+    }
+    function getTeam(game, isHome) {
+        var team = {points: 0, goals: 0, place: 0};
+        if (isHome === 'home') {
+            team.name = game.homeTeamName;
+            team.icon = game.homeTeamIcon;
+            team.link = game.homeTeamLink;
+        } else {
+            team.name = game.awayTeamName;
+            team.icon = game.awayTeamIcon;
+            team.link = game.awayTeamLink;
+        }
+        return team;
+    }
+    ;
+
+    if ($localStorage.ptwc.groupGames !== undefined)
+        $scope.games = angular.copy($localStorage.ptwc.groupGames);
     else
-        $scope.group = [
+        $scope.games = [
             {
                 "no": "1",
                 "group": "A",

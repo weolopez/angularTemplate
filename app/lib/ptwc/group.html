@@ -5,12 +5,12 @@
         <thead>
         <tr>
             <th colspan="5">
-        <h2>Group {{selectedGroup}}</h2>
+        <h2>Group {{selectedGame}}</h2>
         </th>
         </tr>
         <tr>
             <th colspan="5">
-                <button ng-repeat="g in group| unique:'group'" ng-click="$parent.selectedGroup = g.group" ng-class="{ sgcss: $parent.selectedGroup == g.group}">{{g.group}}</button>
+                <button ng-repeat="g in games| unique:'group'" ng-click="$parent.selectedGame = g.group" ng-class="{ sgcss: $parent.selectedGame == g.group}">{{g.group}}</button>
             </th>
         </tr>
         <tr>
@@ -22,11 +22,11 @@
         </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="g in group| filter: {group:selectedGroup} " class="my-repeat-animation">
+            <tr ng-repeat="g in games| filter: {group:selectedGame} " class="my-repeat-animation">
                 <td><a href="{{g.homeTeamLink}}">{{g.homeTeamName}}</a> <span class="{{g.homeTeamIcon}}" title="{{g.homeTeamName}}"> </span> </td>
-                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.homeScore"  min="0" max="9"></div></th>
+                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.homeScore" ng-change="scoreChange($index)" ng-class="{home: g.winner=='home',away: g.winner=='away',tie: g.winner=='tie'}" min="0" max="9"></div></th>
                 <th>-</th>
-                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.awayScore"  min="0" max="9"></div></th>
+                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.awayScore" ng-change="scoreChange($index)" ng-class="{home: g.winner=='away',away: g.winner=='home',tie: g.winner=='tie'}" min="0" max="9"></div></th>
                 <td><a href="{{g.awayTeamLink}}">{{g.awayTeamName}} </a>
                     <span class="{{g.awayTeamIcon}}" title="{{g.awayTeamName}}"> </span> 
                 </td>
