@@ -126,6 +126,7 @@ ng-view {
 }
 
 button {
+        background-color: silver;
 	font-size: 100%;
         margin: 1px;
 }
@@ -170,17 +171,17 @@ input {
 .num-wrap {
     position: relative;
     top: 0px;
-    right: -5px;
+    right: 0px;
     width:25px;
     height:25px;
     overflow:hidden;
-  //  border: solid;
+    //border: solid;
 }
 .numscroll {
     position: relative;
     top: -2px;
     right: 2px;
-    width:25px;
+    width:35px;
     height:25px;
     overflow:auto;
     border: none;

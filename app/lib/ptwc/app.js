@@ -209,7 +209,7 @@ app.controller('GroupCtrl', function($scope, $localStorage) {
 
     function setPoints(group) {
         angular.forEach(group.games, function(game, key) {
-            if ( game.winner === 'home' ) group[game.homeTeamName] 
+            if ( game.winner === 'home' ) group[game.homeTeamName.points] 
         }, group);
         return group;
     }
