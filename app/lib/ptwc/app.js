@@ -192,7 +192,7 @@ app.controller('GroupCtrl', function($scope, $localStorage) {
         if ($scope.games[index].homeScore === undefined || $scope.games[index].awayScore === undefined)
             return;
         var game = $scope.games[index];
-     
+
         if (+game.homeScore > +game.awayScore)
             $scope.games[index].winner = 'home';
         else if (+game.homeScore < +game.awayScore)
@@ -200,10 +200,10 @@ app.controller('GroupCtrl', function($scope, $localStorage) {
         else if (game.homeScore === game.awayScore)
             $scope.games[index].winner = 'tie';
 
-        var group = getGroup($scope.groups, game.group, index);   
+        var group = getGroup($scope.groups, game.group, index);
         var games = $scope.games.filter(filterGamesByGroupName(game.group, $scope.games));
         group = setPoints(games, group);  //TODO test 
-        
+
         angular.extend($scope.groups[game.group], game.group, group);
     };
     function filterGamesByGroupName(groupName, games) {
@@ -211,58 +211,38 @@ app.controller('GroupCtrl', function($scope, $localStorage) {
             return game.group === groupName;
         };
     }
-    function setPoints(games, group) {        
+    function setPoints(games, group) {
         var points = {};
         angular.forEach(games, function(game, key) {
-            if (points[game.homeTeamName] === undefined) points[game.homeTeamName]=0;
-            if (points[game.awayTeamName] === undefined) points[game.awayTeamName]=0;
-            
-            if ( game.winner === 'home' ) points[game.homeTeamName]=+points[game.homeTeamName] + 3;
-            if ( game.winner === 'away' ) points[game.awayTeamName]=+points[game.awayTeamName] + 3;
-            if ( game.winner === 'tie' ) points[game.homeTeamName]=+points[game.homeTeamName] + 1;
-            if ( game.winner === 'tie' ) points[game.awayTeamName]=+points[game.awayTeamName] + 1;                
-        }, points);
-        
-        angular.forEach(points, function(points, team) {       
-            group[team].points = points;
-        }, group);
-        angular.group(points, function(team, points) {       
-            group[team].points = points;
-        }, group);
-        
-        return group;
-    }
-    
-    function getGroup(groups, groupName, index) {
-        if (groups[groupName] === undefined) {
-            var group = {};
-            group[$scope.games[index].homeTeamName] = getTeam($scope.games[index], 'home');
-            group[$scope.games[index].awayTeamName] = getTeam($scope.games[index], 'away');
-            group[$scope.games[index+1].homeTeamName] = getTeam($scope.games[index + 1], 'home');
-            group[$scope.games[index+1].awayTeamName] = getTeam($scope.games[index + 1], 'away');
-            $scope.groups[$scope.games[index].group] = group;
-        } else
-            var group = $scope.groups[$scope.games[index].group];
-        return group;
-    }
-    function getTeam(game, isHome) {
-        var team = {points: 0, goals: 0, place: 0};
-        if (isHome === 'home') {
-            team.name = game.homeTeamName;
-            team.icon = game.homeTeamIcon;
-            team.link = game.homeTeamLink;
-        } else {
-            team.name = game.awayTeamName;
-            team.icon = game.awayTeamIcon;
-            team.link = game.awayTeamLink;
-        }
-        return team;
-    }
-    ;
+            if (points[game.homeTeamName] === undefined)
+                points[game.homeTeamName] = 0;
+            if (points[game.awayTeamName] === undefined)
+                points[game.awayTeamName] = 0;
 
-    if ($localStorage.ptwc.groupGames !== undefined)
+            if (game.winner === 'home')
+                points[game.homeTeamName] = +points[game.homeTeamName] + 3;
+            if (game.winner === 'away')
+                points[game.awayTeamName] = +points[game.awayTeamName] + 3;
+            if (game.winner === 'tie')
+                points[game.homeTeamName] = +points[game.homeTeamName] + 1;
+            if (game.winner === 'tie')
+                points[game.awayTeamName] = +points[game.awayTeamName] + 1;
+        }, points);
+
+        angular.forEach(points, function(points, team) {
+            group[team].points = points;
+        }, group);
+        angular.group(points, function(team, points) {
+            group[team].points = points;
+        }, group);
+
+        return group;
+    }
+    if ($localStorage.ptwc.groupGames !== undefined) {
         $scope.games = angular.copy($localStorage.ptwc.groupGames);
-    else
+        $scope.groups = angular.copy($localStorage.ptwc.groups);
+    }
+    else {
         $scope.games = [
             {
                 "no": "1",
@@ -889,4 +869,17 @@ app.controller('GroupCtrl', function($scope, $localStorage) {
                 "awayTeamName": "Russia"
             }
         ];
+        $scope.groups = {};
+
+        angular.forEach($scope.games, function(game, key) {
+            if ($scope.groups[game.group] === undefined)
+                $scope.groups[game.group] = {};
+            if ($scope.groups[game.group][game.homeTeamName] === undefined)
+                $scope.groups[game.group][game.homeTeamName] = {
+                    name: game.homeTeamName,
+                    icon: game.homeTeamIcon,
+                    link: game.homeTeamLink
+                };
+        }, $scope.groups);
+    }
 });
