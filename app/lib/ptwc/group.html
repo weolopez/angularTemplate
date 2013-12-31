@@ -23,11 +23,11 @@
         </thead>
         <tbody>
             <tr ng-repeat="g in games| filter: {group:selectedGame} " class="my-repeat-animation">
-                <td><a href="{{g.homeTeamLink}}">{{g.homeTeamName}}</a> <span class="{{g.homeTeamIcon}}" title="{{g.homeTeamName}}"> </span> </td>
-                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.homeScore" ng-change="scoreChange($index)" ng-class="{home: g.winner=='home',away: g.winner=='away',tie: g.winner=='tie'}" min="0" max="9"></div></th>
+                <td><a href="{{g.homeTeamLink}}">{{g.homeTeamName}} + {{g.homeTeamPlace}}</a> <span class="{{g.homeTeamIcon}}" title="{{g.homeTeamName}}"> </span> </td>
+                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.homeScore" ng-change="scoreChange(g)" ng-class="{home: g.winner=='home',away: g.winner=='away',tie: g.winner=='tie'}" min="0" max="9"></div></th>
                 <th>-</th>
-                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.awayScore" ng-change="scoreChange($index)" ng-class="{home: g.winner=='away',away: g.winner=='home',tie: g.winner=='tie'}" min="0" max="9"></div></th>
-                <td><a href="{{g.awayTeamLink}}">{{g.awayTeamName}} </a>
+                <th><div class="num-wrap"><input class="numscroll" type="number" ng-model="g.awayScore" ng-change="scoreChange(g)" ng-class="{home: g.winner=='away',away: g.winner=='home',tie: g.winner=='tie'}" min="0" max="9"></div></th>
+                <td><a href="{{g.awayTeamLink}}">{{g.awayTeamName}} + {{g.awayTeamPlace}} </a>
                     <span class="{{g.awayTeamIcon}}" title="{{g.awayTeamName}}"> </span> 
                 </td>
             </tr>
