@@ -154,6 +154,14 @@ input {
 #groupContainer h1 {
     text-align: left;
 }
+#groupContainer h2 {
+        text-align: left;
+        margin-left: 10px;
+}
+#groupContainer h4 {
+        text-align: left;
+        margin-left: 10px;
+}
 #groupContainer table {
     margin: 0 auto;
 }
@@ -202,7 +210,9 @@ input {
 }
 #groupContainer h1 {
     text-align: center;
-}
+}    
+
+    
 	#app .add-new-marker { bottom:95px; }
 	
 	#il-wrap{
@@ -221,6 +231,7 @@ input {
         font-size: 225%;
     }
     #groupContainer h2 {
+        text-align: left;
         font-size: 200%;
     }
     #groupTable a {
