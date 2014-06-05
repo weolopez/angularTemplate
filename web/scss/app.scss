@@ -1,0 +1,291 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 3, 2014, 8:57:15 AM
+    Author     : mlopez
+*/
+
+html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 1px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+}
+
+#header {
+    position: absolute;
+    float: left;
+    background-color: silver;
+    display: inline-block;
+    width: 100%;
+    position:fixed; 
+    top:0px;
+    overflow: hidden;
+    z-index: 1;
+    .visible {
+        visibility: visible;
+        -webkit-transition: all 1s ease-in-out;
+        transition: all .2s ease-in-out ;
+        z-index: 1;
+        height: auto;
+    }
+    .invisible {
+        visibility: hidden;
+        -webkit-transition: all 1s ease-in-out;
+        transition: all .2s ease-in-out ;
+        height: 0;
+    }
+    #hamberger {
+        // position: absolute;
+        float: left;
+        z-index: 4;
+        #ham {
+            width: 60px;
+            //height: 100%;
+            z-index: 999;
+            cursor: pointer;
+        }
+    }
+    #menu {      
+        position: absolute;
+        float: right;
+        right: 0;
+        width: 80%;
+        height: 100%;
+        font-size: 200%;
+        overflow-y:hidden;
+        overflow-x:hidden;
+        z-index: 3;
+        background-color: green;
+        ul {            
+            width: 100%;
+            list-style-type:none;
+            margin:auto;
+            padding:auto;
+            display: block;
+            white-space: nowrap;
+            z-index: 2;
+            li {
+                width: 100%;
+                height: 100%;
+                display: inline-block;
+                text-align: center;
+                vertical-align: middle;
+                margin-top: 10px;
+                z-index: 2;
+            }
+        }
+    }
+}
+
+.h-invisible {
+    top: 0px;
+}
+.h-visible {
+    top: 60px;
+}
+#page {
+    position: absolute;    
+    display: inline-block;
+    width: 100%;
+    height: 100%; 
+    font-size:0;
+    padding: 0;
+    overflow: hidden;
+    background-color: grey;
+    #page-content{
+        position: absolute;
+        //   left: 0px;
+        //  top: 0px;
+        float: right;
+        display: inline-block; 
+        vertical-align: top; font-size: 12px;
+        background-color: #28a4c9;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }    
+}
+#drawer {
+    // position: absolute;
+    background-color: #2b669a;
+    display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 12px;
+    height: 100%;
+    ul {
+		display: block;
+		margin: 40px;
+		padding: 0;
+		list-style: none;
+		opacity: 0.5;
+
+		-moz-transition: all 300ms;
+		-webkit-transition: all 300ms;
+		transition: all 300ms;
+
+		li {
+			color: whitesmoke;
+			padding: 6px 0;
+			cursor: pointer;
+
+			&:hover { color: whitesmoke; }
+           a {
+               color: whitesmoke;
+            }
+		}
+
+		li:before {
+			font-family: "FontAwesome";
+			font-style: normal;
+			font-weight: normal;
+			speak: none;
+			display: inline-block;
+			text-decoration: inherit;
+			width: 1em;
+			color: whitesmoke;
+			margin-right: 12px;
+			text-align: center;
+			font-variant: normal;
+			font-size: 0.75em;
+			text-transform: none;
+			line-height: 1em;
+		}
+
+		li.sep { 
+			margin-top: 7px; 
+			padding-top: 14px; 
+			border-top: 1px solid lighten(white, 10%); 
+		}
+
+		li.timeline:before { content: '\f030'; }
+		li.events:before { content: '\f030'; }
+		li.calendar:before { content: '\f030'; }
+		li.settings:before { content: '\f030'; }
+		li.logout:before { content: '\f030'; }
+	}
+}
+
+#drawer.active {
+    -webkit-transition: all 1s ease-in-out;
+    transition: all .5s ease-in-out ;
+    visibility: visible;
+    width: 300px;
+}
+#drawer.inactive {
+    -webkit-transition: all 1s ease-in-out;
+    transition: all .5s ease-in-out ;
+    visibility: hidden;
+    width: 0;
+}
+
+#footer {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+.container {
+}
+.tile {
+    display: inline-block;
+    background-color: white;
+    width: 400px;
+    height: 300px;
+    font-size: 500%;
+    text-align: center;
+}
+.panel-flip {
+    float: left;
+    font-size: 0.8em;
+    perspective: 1000;
+    position: relative;
+    background: none repeat scroll 0 0 white;
+}
+
+
+/* -- make sure to declare a default for every property that you want animated -- */
+/* -- general styles, including Y axis rotation -- */
+.panel-flip .front {
+    backface-visibility: hidden;
+    background: none repeat scroll 0 0 #6B7077;
+    float: none;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: inherit;
+        
+    z-index: 900;
+    transform-origin: right top 1;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+    transform: rotateX(0deg) rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* -- transition is the magic sauce for animation -- */
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out ;
+}
+.panel-flip .front.flip  {
+    z-index: 900;
+    
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.panel-flip .back {
+    background: none repeat scroll 0 0 silver;    
+    height: inherit;
+    width: inherit;
+    z-index: 1800;
+    position: absolute;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-179deg); /* setting to 180 causes an unnatural-looking half-flip */
+    transform: rotateY(-179deg);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* -- transition is the magic sauce for animation -- */
+    -webkit-transition: all 1s ease-in-out;
+    
+    //transform: translate(500px, 500px) scale(5,5);
+    transition: all 1s ease-in-out;
+}
+.panel-flip .back.flip:after {      
+    position: absolute;
+    float: left;
+    background: none repeat scroll 0 0 silver;    
+    height: inherit;
+    width: inherit;
+    z-index: 1900;
+}
+
+.panel-flip .back.flip {   
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+    transform: rotateX(0deg) rotateY(0deg);
+    //transform: translate(100px, 100px) scale(1.1,1.2);
+    //transform-origin()100px 100px');
+        
+}
