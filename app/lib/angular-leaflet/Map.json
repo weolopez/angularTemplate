@@ -1,0 +1,50 @@
+{
+    "_id": {
+        "$oid": "5267d28fe4b0037828375040"
+    },
+    "base": {
+        "center": {
+            "zoom": 10
+        },
+        "defaults": {
+            "maxZoom": 25,
+            "minZoom": 11,
+            "controlLayersPosition": "topleft",
+            "attributionControl": false,
+            "tileLayer": "",
+            "tileLayerOptions": {},
+            "zoomControl": false
+        },
+        "layers": {
+            "baselayers": {
+                "googleStreet": {
+                    "name": "Google Street",
+                    "layerType": "ROADMAP",
+                    "type": "google",
+                    "layerParams": {},
+                    "layerOptions": {}
+                },
+                "googleTerrain": {
+                    "name": "Google Terrain",
+                    "layerType": "SATELLITE",
+                    "type": "google",
+                    "layerParams": {},
+                    "layerOptions": {}
+                }
+            }
+        },
+        "markers": {}
+    },
+    "types": [
+        {
+            "name": "Crowds",
+            "icon": "icon-heart",
+            "type": "marker"
+        },
+        {
+            "name": "Home",
+            "icon": "icon-home",
+            "type": "nav"
+        }
+    ]
+}

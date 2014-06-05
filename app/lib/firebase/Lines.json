@@ -1,0 +1,75 @@
+{
+    "_id": {
+        "$oid": "525be974e4b066b5b176fedd"
+    },
+    "base": {
+        "center": {
+            "zoom": 18
+        },
+        "defaults": {
+            "maxZoom": 25,
+            "minZoom": 17,
+            "controlLayersPosition": "topleft",
+            "attributionControl": false,
+            "tileLayer": "",
+            "tileLayerOptions": {},
+            "zoomControl": false
+        },
+        "layers": {
+            "baselayers": {
+                "googleTerrain": {
+                    "name": "Google Terrain",
+                    "layerType": "SATELLITE",
+                    "type": "google",
+                    "layerParams": {},
+                    "layerOptions": {}
+                },
+                "googleStreet": {
+                    "name": "Google Street",
+                    "layerType": "ROADMAP",
+                    "type": "google",
+                    "layerParams": {},
+                    "layerOptions": {}
+                }
+            }
+        },
+        "markers": {}
+    },
+    "types": [
+        {
+            "name": "beer",
+            "icon": "icon-beer",
+            "path": "BEER"
+        },
+        {
+            "name": "toilet",
+            "icon": "icon-female",
+            "path": "FEMALE"
+        },
+        {
+            "name": "food",
+            "icon": "icon-food",
+            "path": "food"
+        },
+        {
+            "name": "ATM",
+            "icon": "icon-dollar",
+            "path": "MONEY"
+        },
+        {
+            "name": "Shopping",
+            "icon": "icon-shopping-cart",
+            "path": "CART"
+        },
+        {
+            "name": "Taxi",
+            "icon": "icon-truck",
+            "path": "TRUCK"
+        },
+        {
+            "name": "Doctor",
+            "icon": "icon-h-sign",
+            "path": "H_SIGN"
+        }
+    ]
+}
