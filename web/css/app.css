@@ -7,14 +7,14 @@ and open the template in the editor.
     Created on : Jun 3, 2014, 8:57:15 AM
     Author     : mlopez
 */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000311}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000311}}
 html {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000317}}
 body {
   /* Margin bottom by footer height */
   margin-bottom: 1px;
@@ -23,40 +23,46 @@ body {
   overflow: hidden;
   position: fixed; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000325}}
+a:link, a:visited {
+  color: black; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000328}}
 #header {
   position: absolute;
   float: left;
-  background-color: silver;
+  background-color: #067AB4;
+  color: whitesmoke;
   display: inline-block;
   width: 100%;
   position: fixed;
   top: 0px;
   overflow: hidden;
   z-index: 1; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000336}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000339}}
   #header .visible {
     visibility: visible;
     -webkit-transition: all 1s ease-in-out;
     transition: all 0.2s ease-in-out;
     z-index: 1;
     height: auto; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000343}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000346}}
   #header .invisible {
     visibility: hidden;
     -webkit-transition: all 1s ease-in-out;
     transition: all 0.2s ease-in-out;
     height: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000352}}
   #header #hamberger {
     float: left;
-    z-index: 4; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000353}}
+    z-index: 4;
+    background-color: #067AB4; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000357}}
     #header #hamberger #ham {
       width: 60px;
       z-index: 999;
       cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000360}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000364}}
   #header #menu {
     position: absolute;
     float: right;
@@ -67,8 +73,8 @@ body {
     overflow-y: hidden;
     overflow-x: hidden;
     z-index: 3;
-    background-color: green; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000371}}
+    background-color: #067AB4; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000375}}
     #header #menu ul {
       width: 100%;
       list-style-type: none;
@@ -77,7 +83,7 @@ body {
       display: block;
       white-space: nowrap;
       z-index: 2; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000379}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000383}}
       #header #menu ul li {
         width: 100%;
         height: 100%;
@@ -87,15 +93,15 @@ body {
         margin-top: 10px;
         z-index: 2; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000392}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000396}}
 .h-invisible {
   top: 0px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000395}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\0000399}}
 .h-visible {
   top: 60px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\0000398}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003102}}
 #page {
   position: absolute;
   display: inline-block;
@@ -105,7 +111,7 @@ body {
   padding: 0;
   overflow: hidden;
   background-color: grey; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003107}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003111}}
   #page #page-content {
     position: absolute;
     float: right;
@@ -118,37 +124,49 @@ body {
     overflow-x: hidden;
     overflow-y: scroll; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003121}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003125}}
 #drawer {
-  background-color: #2b669a;
+  background-color: #7CC6FF;
   display: inline-block;
   *display: inline;
   zoom: 1;
   vertical-align: top;
   font-size: 12px;
-  height: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003126}}
+  height: 100%;
+  width: 100%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003131}}
   #drawer ul {
     display: block;
-    margin: 40px;
-    padding: 0;
+    padding: 40px 20px 0px 40px;
     list-style: none;
     opacity: 0.5;
+    width: 100%;
     -moz-transition: all 300ms;
     -webkit-transition: all 300ms;
-    transition: all 300ms; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003137}}
+    transition: all 300ms;
+    overflow: hidden; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003141}}
+    #drawer ul a, #drawer ul a:link, #drawer ul a:visited {
+      color: black;
+      width: 100%;
+      float: left; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003147}}
     #drawer ul li {
-      color: whitesmoke;
-      padding: 6px 0;
-      cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003142}}
-      #drawer ul li:hover {
-        color: whitesmoke; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003143}}
-      #drawer ul li a {
-        color: whitesmoke; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003148}}
+      color: black;
+      padding: 10px 20px 10px 20px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 2em; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003153}}
+      #drawer ul li .mlist {
+        float: left;
+        margin: 5px;
+        padding: 5px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003159}}
+    #drawer ul li:hover {
+      background-color: #067AB4;
+      border-radius: 10px 10px 10px 10px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003164}}
     #drawer ul li:before {
       font-family: "FontAwesome";
       font-style: normal;
@@ -157,49 +175,33 @@ body {
       display: inline-block;
       text-decoration: inherit;
       width: 1em;
-      color: whitesmoke;
       margin-right: 12px;
       text-align: center;
       font-variant: normal;
-      font-size: 0.75em;
+      font-size: 2em;
       text-transform: none;
-      line-height: 1em; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003165}}
+      line-height: 1em;
+      float: left; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003181}}
     #drawer ul li.sep {
       margin-top: 7px;
-      padding-top: 14px;
-      border-top: 1px solid white; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003171}}
-    #drawer ul li.timeline:before {
-      content: '\f030'; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003172}}
-    #drawer ul li.events:before {
-      content: '\f030'; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003173}}
-    #drawer ul li.calendar:before {
-      content: '\f030'; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003174}}
-    #drawer ul li.settings:before {
-      content: '\f030'; }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003175}}
-    #drawer ul li.logout:before {
-      content: '\f030'; }
+      padding-top: 14px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003179}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003189}}
 #drawer.active {
   -webkit-transition: all 1s ease-in-out;
   transition: all 0.5s ease-in-out;
   visibility: visible;
   width: 300px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003185}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003195}}
 #drawer.inactive {
   -webkit-transition: all 1s ease-in-out;
   transition: all 0.5s ease-in-out;
   visibility: hidden;
   width: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003192}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003202}}
 #footer {
   visibility: hidden;
   position: absolute;
@@ -209,7 +211,7 @@ body {
   height: 60px;
   background-color: #f5f5f5; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003203}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003213}}
 .tile {
   display: inline-block;
   background-color: white;
@@ -218,7 +220,7 @@ body {
   font-size: 500%;
   text-align: center; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003211}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003221}}
 .panel-flip {
   float: left;
   font-size: 0.8em;
@@ -228,7 +230,7 @@ body {
 
 /* -- make sure to declare a default for every property that you want animated -- */
 /* -- general styles, including Y axis rotation -- */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003222}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003232}}
 .panel-flip .front {
   backface-visibility: hidden;
   background: none repeat scroll 0 0 #6B7077;
@@ -253,14 +255,14 @@ body {
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003247}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003257}}
 .panel-flip .front.flip {
   z-index: 900;
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   transform: rotateY(180deg); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003254}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003264}}
 .panel-flip .back {
   background: none repeat scroll 0 0 silver;
   height: inherit;
@@ -281,7 +283,7 @@ body {
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003285}}
 .panel-flip .back.flip:after {
   position: absolute;
   float: left;
@@ -290,7 +292,7 @@ body {
   width: inherit;
   z-index: 1900; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/MobileTemplate\/app\/scss\/app\.scss}line{font-family:\00003284}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003294}}
 .panel-flip .back.flip {
   -webkit-transform: rotateX(0deg) rotateY(0deg);
   -moz-transform: rotateX(0deg) rotateY(0deg);

@@ -39,7 +39,6 @@ angular.module('myApp.controllers', ['ngResource']).
                 team.isShown = !team.isShown;
                 var mvp = document.getElementsByTagName('body');
                 //mvp.setAttribute('style', 'transform translate(500px, 500px) scale(5,5);transform-origin 100px 100px');
-                alert(mvp.getAttribute('testViewport'))
             }
             $scope.isShown = function(team) {
                 if (team.isShown === undefined)

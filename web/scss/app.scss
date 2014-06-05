@@ -22,11 +22,14 @@ body {
     overflow: hidden;
     position: fixed;
 }
-
+a:link, a:visited {    
+    color: black;
+}
 #header {
     position: absolute;
     float: left;
-    background-color: silver;
+    background-color: #067AB4;
+    color: whitesmoke;
     display: inline-block;
     width: 100%;
     position:fixed; 
@@ -50,6 +53,7 @@ body {
         // position: absolute;
         float: left;
         z-index: 4;
+        background-color: #067AB4;
         #ham {
             width: 60px;
             //height: 100%;
@@ -67,7 +71,7 @@ body {
         overflow-y:hidden;
         overflow-x:hidden;
         z-index: 3;
-        background-color: green;
+        background-color: #067AB4;
         ul {            
             width: 100%;
             list-style-type:none;
@@ -120,60 +124,66 @@ body {
 }
 #drawer {
     // position: absolute;
-    background-color: #2b669a;
+    background-color: #7CC6FF;
     display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 12px;
     height: 100%;
+    width: 100%;
     ul {
-		display: block;
-		margin: 40px;
-		padding: 0;
-		list-style: none;
-		opacity: 0.5;
-
-		-moz-transition: all 300ms;
-		-webkit-transition: all 300ms;
-		transition: all 300ms;
-
-		li {
-			color: whitesmoke;
-			padding: 6px 0;
-			cursor: pointer;
-
-			&:hover { color: whitesmoke; }
-           a {
-               color: whitesmoke;
+        display: block;
+        padding: 40px 20px 0px 40px;
+        list-style: none;
+        opacity: 0.5;
+        width: 100%;
+        -moz-transition: all 300ms;
+        -webkit-transition: all 300ms;
+        transition: all 300ms;
+        overflow: hidden;
+        a, a:link, a:visited {
+            color: black;
+            width: 100%;
+            
+            float: left     
+        }      
+        li {
+            color: black;
+            padding: 10px 20px 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 2em;
+            .mlist{
+                float: left;
+                margin: 5px;
+                padding: 5px;
             }
-		}
+        }
+        li:hover{            
+            background-color: #067AB4;
+            border-radius: 10px 10px 10px 10px; 
+        }
 
-		li:before {
-			font-family: "FontAwesome";
-			font-style: normal;
-			font-weight: normal;
-			speak: none;
-			display: inline-block;
-			text-decoration: inherit;
-			width: 1em;
-			color: whitesmoke;
-			margin-right: 12px;
-			text-align: center;
-			font-variant: normal;
-			font-size: 0.75em;
-			text-transform: none;
-			line-height: 1em;
-		}
+        li:before {
+            font-family: "FontAwesome";
+            font-style: normal;
+            font-weight: normal;
+            speak: none;
+            display: inline-block;
+            text-decoration: inherit;
+            width: 1em;
+            margin-right: 12px;
+            text-align: center;
+            font-variant: normal;
+            font-size: 2em;
+            text-transform: none;
+            line-height: 1em;
+            float: left;
+        }
 
-		li.sep { 
-			margin-top: 7px; 
-			padding-top: 14px; 
-			border-top: 1px solid lighten(white, 10%); 
-		}
+        li.sep { 
+            margin-top: 7px; 
+            padding-top: 14px; 
+        }
 
-		li.timeline:before { content: '\f030'; }
-		li.events:before { content: '\f030'; }
-		li.calendar:before { content: '\f030'; }
-		li.settings:before { content: '\f030'; }
-		li.logout:before { content: '\f030'; }
-	}
+    }
 }
 
 #drawer.active {
@@ -228,7 +238,7 @@ body {
     text-align: center;
     top: 0;
     width: inherit;
-        
+
     z-index: 900;
     transform-origin: right top 1;
     -webkit-transform: rotateX(0deg) rotateY(0deg);
@@ -246,7 +256,7 @@ body {
 }
 .panel-flip .front.flip  {
     z-index: 900;
-    
+
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
     transform: rotateY(180deg);
@@ -268,7 +278,7 @@ body {
     backface-visibility: hidden;
     /* -- transition is the magic sauce for animation -- */
     -webkit-transition: all 1s ease-in-out;
-    
+
     //transform: translate(500px, 500px) scale(5,5);
     transition: all 1s ease-in-out;
 }
@@ -287,5 +297,5 @@ body {
     transform: rotateX(0deg) rotateY(0deg);
     //transform: translate(100px, 100px) scale(1.1,1.2);
     //transform-origin()100px 100px');
-        
+
 }

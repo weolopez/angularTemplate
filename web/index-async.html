@@ -162,15 +162,14 @@
                 </ul>
             </section>
         </section>
-
         <section id="page" class="container" ng-class="{true: 'h-visible', false: 'h-invisible'}[$root.scrolledUp]">
             <section id="drawer"  ng-class="{true: 'active', false: 'inactive'}[!isActive]">                
                 <ul style="width: 100%;">
-                    <li class="timeline"><a href="#/view1">option 1</a></li>
-                    <li class="events"><a href="#/view2">option 2</a></li>
-                    <li class="calendar"><a href="#/view1">option 1</a></li>
-                    <li class="sep settings"><a href="#/view2">option 2</a></li>
-                    <li class="logout"><a href="#/view1">option 1</a></li>
+                    <a href="#/view1"><li class="fa fa-home fa-fw"><div class="mlist">Cameras</div></li></a>
+                    <a href="#/view2"><li class="fa fa-book fa-fw"><div class="mlist">Flags</div></li></a>
+                    <a href="#/view1"><li class="fa fa-pencil fa-fw"><div class="mlist">option 1</div></li></a>
+                    <a href="#/view2"><li class="fa fa-cog fa-fw"><div class="mlist">option 2</div></li></a>
+                    <a href="#/view1"><li class="fa fa-camera-retro fa-lg"><div class="mlist">option 1</div></li></a>
                 </ul>
             </section>
             <section id="page-content" ng-view scroll></section>
