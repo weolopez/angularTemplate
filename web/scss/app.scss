@@ -54,8 +54,11 @@ a:link, a:visited {
         float: left;
         z-index: 4;
         background-color: #067AB4;
+        width: 60px;
+        height: 60px;
         #ham {
-            width: 60px;
+            margin: 15px;
+            width: 30px;
             //height: 100%;
             z-index: 999;
             cursor: pointer;
@@ -115,9 +118,10 @@ a:link, a:visited {
         float: right;
         display: inline-block; 
         vertical-align: top; font-size: 12px;
-        background-color: #28a4c9;
-        width: 100%;
+        background-color: blackb;
+        width: 105%;
         height: 100%;
+        padding-right: 15px;
         overflow-x: hidden;
         overflow-y: scroll;
     }    
@@ -154,6 +158,7 @@ a:link, a:visited {
                 float: left;
                 margin: 5px;
                 padding: 5px;
+                font-family: sans-serif;
             }
         }
         li:hover{            

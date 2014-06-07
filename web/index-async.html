@@ -135,6 +135,8 @@
                 'lib/angular/angular-route.js',
                 'lib/angular/angular-resource.js',
                 'lib/angular/angular-animate.js',
+                'lib/angular/angular-charts.js',
+                
                 'js/app.js',
                 'js/services.js',
                 'js/controllers.js',
@@ -149,6 +151,8 @@
         <link rel="stylesheet" href="css/app.css">
         <link href="app/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="app/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <!--script data-require="d3@*" data-semver="3.3.11" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.11/d3.js"></script-->
+
     </head>
     <body ng-cloak ng-controller="main">
         <section id="header" ng-class="{true: 'visible', false: 'invisible'}[$root.scrolledUp]">
@@ -157,8 +161,8 @@
             </div>    
             <section id="menu">
                 <ul>
-                    <li><a href="#/view1">view1</a></li>
-                    <li><a href="#/view2">view2</a></li>
+                    <li><a href="#/view1">Dashboard</a></li>
+                    <li><a href="#/view2">List</a></li>
                 </ul>
             </section>
         </section>

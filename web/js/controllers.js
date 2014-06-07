@@ -29,7 +29,7 @@ angular.module('myApp.controllers', ['ngResource']).
             $scope.getWidth = function(team) {
 
                 if (window.innerWidth <= window.screen.width)
-                    team.width = (window.innerWidth / 4) - 5;
+                    team.width = (window.innerWidth / 4) - 0;
                 else
                     team.width = (window.screen.width / 1) - 1;
                 return team.width;
