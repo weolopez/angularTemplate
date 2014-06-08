@@ -5,6 +5,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.filters',
+  'ngFlippable',
   'myApp.services',
   'myApp.directives',
   'myApp.controllers'

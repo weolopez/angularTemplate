@@ -1,4 +1,4 @@
-<div>
+<div style="position: relative;width: 100%;height: 100%">
     <div resizable class="panel-flip" ng-repeat="team in teams" style="width:{{getWidth(team)}}px;height:{{(getWidth(team) * 3) / 4}}px">
         <div class="back center" ng-class="{flip:team.isShown}" ng-click="flip(team)" >
             <a href="{{team.Link}}"><h1>{{team.Name}}</h1></a>

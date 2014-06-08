@@ -5,6 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/flip.css">
+        <link href="lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+
         <style>
             [ng-cloak] {
                 display: none;
@@ -141,16 +146,14 @@
                 'js/services.js',
                 'js/controllers.js',
                 'js/filters.js',
-                'js/directives.js'
+                'js/directives.js',
+                'js/flippable.js'
             ], function() {
                 // when all is done, execute bootstrap angular application
                 angular.bootstrap(document, ['myApp']);
             });
         </script>
-        <title>My AngularJS App</title>
-        <link rel="stylesheet" href="css/app.css">
-        <link href="app/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="app/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <title>My AngularJS App</title> 
         <!--script data-require="d3@*" data-semver="3.3.11" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.11/d3.js"></script-->
 
     </head>
