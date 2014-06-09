@@ -1,13 +1,17 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/flip\.scss}line{font-family:\000031}}
 .flip {
   position: relative;
   -webkit-perspective: 800;
   perspective: 800px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/flip\.scss}line{font-family:\000036}}
   .flip.flipped .card {
     -webkit-transform: rotatex(-180deg);
     transform: rotatex(-180deg); }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/flip\.scss}line{font-family:\0000311}}
   .flip.flipped[horizontal] .card {
     -webkit-transform: rotatey(-180deg);
     transform: rotatey(-180deg); }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/flip\.scss}line{font-family:\0000316}}
   .flip .card {
     width: 100%;
     height: 100%;
@@ -15,6 +19,7 @@
     transform-style: preserve-3d;
     -webkit-transition: 0.5s;
     transition: 0.5s; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/flip\.scss}line{font-family:\0000324}}
     .flip .card .face {
       width: 100%;
       height: 100%;
@@ -22,14 +27,15 @@
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       z-index: 2; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/flip\.scss}line{font-family:\0000333}}
     .flip .card .front {
       position: absolute;
       z-index: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/flip\.scss}line{font-family:\0000338}}
     .flip .card .back {
       -webkit-transform: rotatex(-180deg);
       transform: rotatex(-180deg); }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/flip\.scss}line{font-family:\0000344}}
   .flip[horizontal] .card .back {
     -webkit-transform: rotatey(-180deg);
     transform: rotatey(-180deg); }
-
-/*# sourceMappingURL=flip.css.map */

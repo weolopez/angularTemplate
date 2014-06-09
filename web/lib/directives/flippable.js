@@ -4,66 +4,6 @@
  * and open the template in the editor.
  */
 angular.module('ngFlippable', [])
-	.directive('flippable', function() {
-		return {
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-			scope: {},
-			controller: function($scope, $element) {
-				$scope.flipped = false;
-				$scope.flip = function() {
-					console.log('flipping..'+$scope.flipped.toString());
-					$scope.flipped = !$scope.flipped;
-				};
-				this.addFront = function(front) {
-					$scope.front = (front);
-				};
-				this.addBack = function(back) {
-					$scope.back = (back);
-				};
-			},
-			template:
-				'<div class="flippable" ng-click="flip()">' +
-				'<style>' +
-				'.front { background-color: red; }' +
-				'.back { background-color: blue; }' +
-				'.flipped { background-color: green; }' +
-				'</style>' +
-				'<div ng-transclude></div>' +
-				'</div>'
-		};
-	})
-	.directive('front', function() {
-		return {
-			require: '^flippable',
-			restrict: 'E',
-			transclude: true,
-			scope: {title: '@'},
-			link: function(scope, element, attrs, flippableCtrl) {
-				flippableCtrl.addFront(scope);
-			},
-			template:
-				'<div class="" ng-class="{front:flipped}" ng-transclude>' +
-				'</div>',
-			replace: true
-		};
-	})
-	.directive('back', function() {
-		return {
-			require: '^flippable',
-			restrict: 'E',
-			transclude: true,
-			scope: {title: '@'},
-			link: function(scope, element, attrs, flippableCtrl) {
-				flippableCtrl.addBack(scope);
-			},
-			template:
-				'<div class="" ng-class="{back:flipped}" ng-transclude>' +
-				'</div>',
-			replace: true
-		};
-	})
 .directive('flip', function() {
     return {
         restrict: 'E',
