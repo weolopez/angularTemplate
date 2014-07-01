@@ -217,21 +217,13 @@ a:link, a:visited {
   background-color: #f5f5f5; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003218}}
-.tile {
-  display: inline-block;
-  background-color: white;
-  width: 400px;
-  height: 300px;
-  font-size: 500%;
-  text-align: center; }
-
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003226}}
 .panel-flip {
   float: left;
   font-size: 0.8em;
   perspective: 1000;
   position: relative;
-  background: none repeat scroll 0 0 white;
-  border-color: tan;
-  border-style: solid;
-  border-width: 10px; }
+  background: none repeat scroll 0 0 white; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/app\.scss}line{font-family:\00003229}}
+.tile {
+  height: 100px; }

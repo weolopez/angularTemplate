@@ -1,0 +1,25 @@
+<div>
+    <core-toolbar horizontal layout style="background-color: black;">
+        <paper-fab icon="done-all" class="mini" style="margin: 15px;" ng-click="addFP()"></paper-fab>
+        <h3 style="padding: 10px;margin: 10px;top: 10px;">Edit Feed Provider</h3>
+    </core-toolbar>    
+    <div id="add-provider" ng-hide="addProvider" >
+        <div horizontal layout ng-repeat="fp in feedprovider">
+            <paper-checkbox id="cbox" style="margin: 20px;" ng-click="checked($index)" ></paper-checkbox>
+            <h4 style="padding: 10px;margin: 10px;top: 10px;">{{fp.name}}</h4>
+        </div>
+    </div>
+
+    <div vertical layout ng-repeat="fp in feedprovider" ng-show="fp.selected" style="background-color: silver;">
+        <div horizontal layout >
+            <paper-fab icon="create" class="mini" style="margin: 20px;" ng-click="edit($index)" ></paper-fab>
+            <h3 style="padding: 10px;margin: 15px;">{{fp.name}}</h3>
+        </div>
+        <div id="add-size" ng-show="fp.addSize" >
+            <div horizontal layout ng-repeat="cs in contentsize">
+                <paper-checkbox id="cbox" style="margin: 20px;" ng-click="" ></paper-checkbox>
+                <h4 style="padding: 10px;margin: 10px;top: 10px;">{{cs.name}}</h4>
+            </div>
+        </div>        
+    </div>
+</div>

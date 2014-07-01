@@ -1,32 +1,36 @@
-<div class="panel-flip">
-	<flip flip-toggle resizable  ng-repeat="team in teams" class style="width:{{getWidth(team)}}px;height:{{(getWidth(team) * 3) / 4}}px;position: relative;float: left;">
-		<flip-front>
-        		<img src="{{getURL(team.Abbrev)}}" alt="{{team.Name}}" width="100%" >        
-		</flip-front>
-		<flip-back>
-			<a href="{{team.Link}}"><h1>{{team.Name}}</h1></a>
-			<h3 style="padding-top: 3px;">Group {{team.group}}</h3>
+<div>
+    <flip flip-toggle horizontal style="width: 100%;height: 100%">
+        <flip-front class="panel-flip">
+            <div ng-repeat="team in teams" class style="width:{{getWidth(team)}}px;height:{{(getWidth(team) * 3) / 4}}px;position: relative;float: left;">
+                <img src="{{getURL(team.Abbrev)}}" alt="{{team.Name}}" width="100%" >        
+            </div>
+        </flip-front>
 
-			<table id="groupTable" class="animate-table" align="center">
-				<thead>
-					<tr style="height: 15px">
-						<th>Home</th>
-						<th>Score</th>
-						<th>vs</th>
-						<th>Score</th>
-						<th>Away</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="g in team.games">
-						<td>{{g.homeTeamName}}</td>
-						<th><input type="text" style="width:17px" ng-model="g.homeScore" ng-click="$event.stopPropagation();"></th>
-						<th>-</th>
-						<th><input type="text" style="width:17px" ng-model="g.awayScore" ng-click="$event.stopPropagation();"></th>
-						<td>{{g.awayTeamName}}</td>                        
-					</tr>
-				</tbody>
-			</table>
-		</flip-back>
-	</flip>
+        <flip-back style="background-color: silver;opacity: 1;font-size: 400%;display: inline-block; ">
+            
+            <a href="{{team.Link}}"><h1>{{team.Name}}</h1></a>
+            <h3 style="padding-top: 3px;">Group {{team.group}}</h3>
+
+            <table id="groupTable" class="animate-table" align="center">
+                <thead>
+                    <tr style="height: 15px">
+                        <th>Home</th>
+                        <th>Score</th>
+                        <th>vs</th>
+                        <th>Score</th>
+                        <th>Away</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="g in team.games">
+                        <td>{{g.homeTeamName}}</td>
+                        <th><input type="text" style="width:17px" ng-model="g.homeScore" ng-click="$event.stopPropagation();"></th>
+                        <th>-</th>
+                        <th><input type="text" style="width:17px" ng-model="g.awayScore" ng-click="$event.stopPropagation();"></th>
+                        <td>{{g.awayTeamName}}</td>                        
+                    </tr>
+                </tbody>
+            </table>
+        </flip-back>
+    </flip>
 </div>

@@ -7,12 +7,14 @@ and open the template in the editor.
     Created on : Jun 28, 2014, 9:35:20 AM
     Author     : ML5174
 */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/polymer-app\.scss}line{font-family:\0000312}}
 #design_host {
   position: absolute;
   width: 100%;
   height: 100%;
   box-sizing: border-box; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/polymer-app\.scss}line{font-family:\0000318}}
 #core_scaffold {
   position: absolute;
   top: 0px;
@@ -22,17 +24,42 @@ and open the template in the editor.
   width: 100%;
   height: 100%; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/polymer-app\.scss}line{font-family:\0000327}}
 #core_header_panel {
   background-color: white; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/polymer-app\.scss}line{font-family:\0000330}}
 #core_toolbar {
   background-color: #4f7dc9;
   color: white; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/polymer-app\.scss}line{font-family:\0000334}}
 #core_menu {
   font-size: 16px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/polymer-app\.scss}line{font-family:\0000336}}
+  #core_menu a {
+    text-decoration: none;
+    color: black; }
 
-#paper_input {
-  background-color: white; }
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/polymer-app\.scss}line{font-family:\0000341}}
+#add-provider {
+  overflow: hidden;
+  max-height: 500px;
+  /* approximate max height */
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  margin: 10px;
+  vertical-align: middle;
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1); }
 
-/*# sourceMappingURL=polymer-app.css.map */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/polymer-app\.scss}line{font-family:\0000355}}
+#add-provider.ng-hide-add {
+  display: block !important;
+  height: 100%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/mlopez\/Documents\/NetBeansProjects\/AmazonFaces\/web\/scss\/polymer-app\.scss}line{font-family:\0000359}}
+#add-provider.ng-hide {
+  max-height: 0; }

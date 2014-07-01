@@ -1,30 +1,32 @@
-<div style="position: relative;width: 100%;height: 100%">
-    <div resizable class="panel-flip" ng-repeat="team in teams" style="width:{{getWidth(team)}}px;height:{{(getWidth(team) * 3) / 4}}px">
-        <div class="back center" ng-class="{flip:team.isShown}" ng-click="flip(team)" >
-            <a href="{{team.Link}}"><h1>{{team.Name}}</h1></a>
-            <h3 style="padding-top: 3px;">Group {{team.group}}</h3>
+<div class="panel-flip">
+	<flip flip-toggle horizontal resizable cols="1" class="tile" ng-repeat="team in teams" style=";position: relative;float: left;">
+		<flip-front>
+        		<img src="{{getURL(team.Abbrev)}}" alt="{{team.Name}}" width="100%" >        
+		</flip-front>
+		<flip-back style="background-color: silver;opacity: 1;">
+			<a href="{{team.Link}}"><h1>{{team.Name}}</h1></a>
+			<h3 style="padding-top: 3px;">Group {{team.group}}</h3>
 
-            <table id="groupTable" class="animate-table" align="center">
-                <thead>
-                <tr style="height: 15px">
-                    <th>Home</th>
-                    <th>Score</th>
-                    <th>vs</th>
-                    <th>Score</th>
-                    <th>Away</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="g in team.games">
-                        <td>{{g.homeTeamName}}</td>
-                        <th><input type="text" style="width:17px" ng-model="g.homeScore" ng-click="$event.stopPropagation();"></th>
-                        <th>-</th>
-                        <th><input type="text" style="width:17px" ng-model="g.awayScore" ng-click="$event.stopPropagation();"></th>
-                        <td>{{g.awayTeamName}}</td>                        
-                    </tr>
-                </tbody>
-            </table>
-        </div>      
-        <img class="front" ng-class="{flip:team.isShown}" ng-click="flip(team)" src="{{getURL(team.Abbrev)}}" alt="{{team.Name}}" width="100%" >        
-    </div>    
+			<table id="groupTable" class="animate-table" align="center">
+				<thead>
+					<tr style="height: 15px">
+						<th>Home</th>
+						<th>Score</th>
+						<th>vs</th>
+						<th>Score</th>
+						<th>Away</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="g in team.games">
+						<td>{{g.homeTeamName}}</td>
+						<th><input type="text" style="width:17px" ng-model="g.homeScore" ng-click="$event.stopPropagation();"></th>
+						<th>-</th>
+						<th><input type="text" style="width:17px" ng-model="g.awayScore" ng-click="$event.stopPropagation();"></th>
+						<td>{{g.awayTeamName}}</td>                        
+					</tr>
+				</tbody>
+			</table>
+		</flip-back>
+	</flip>
 </div>

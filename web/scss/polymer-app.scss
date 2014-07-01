@@ -33,7 +33,29 @@ and open the template in the editor.
 }
 #core_menu {
     font-size: 16px;
+    a {
+        text-decoration: none;
+        color: black;
+    }
 }
-#paper_input {
-    background-color: rgb(255, 255, 255);
+#add-provider{
+    overflow: hidden;
+	max-height: 500px; /* approximate max height */
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    vertical-align: middle;
+
+	transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+#add-provider.ng-hide-add  {
+  display:block!important;
+  height:100%;
+}
+#add-provider.ng-hide {
+  max-height: 0;
 }
